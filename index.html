@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ratchet & Clank: Rift Apart - Platinum Roadmap</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Font (Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <script>
+        // Ensure dark mode is applied
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                },
+            },
+        }
+    </script>
+
+    <style>
+        /* Custom styles for dark mode and checklist */
+        body {
+            background-color: #111827; /* bg-gray-900 */
+            color: #d1d5db; /* text-gray-300 */
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1f2937; /* bg-gray-800 */
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #374151; /* bg-gray-700 */
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4b5563; /* bg-gray-600 */
+        }
+
+        /* Main accordion sections */
+        .section-accordion > summary {
+            list-style: none;
+            cursor: pointer;
+            padding: 1rem 1.5rem;
+            background-color: #1f2937; /* bg-gray-800 */
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 1.125rem;
+            transition: background-color 0.2s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .section-accordion > summary:hover {
+            background-color: #374151; /* bg-gray-700 */
+        }
+        .section-accordion > summary::-webkit-details-marker {
+            display: none;
+        }
+        .section-accordion > summary::after {
+            content: '+';
+            font-size: 1.5rem;
+            transition: transform 0.2s;
+        }
+        .section-accordion[open] > summary::after {
+            transform: rotate(45deg);
+        }
+        .section-accordion-content {
+            padding: 1.5rem;
+            background-color: #1f2937; /* bg-gray-800 */
+            border-top: 1px solid #374151; /* bg-gray-700 */
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+        }
+
+        /* Individual checklist items */
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #374151; /* bg-gray-700 */
+            gap: 0.75rem;
+        }
+        .checklist-item:last-child {
+            border-bottom: none;
+        }
+        .checklist-box {
+            width: 1.25rem;
+            height: 1.25rem;
+            flex-shrink: 0;
+            border-radius: 4px;
+            background-color: #374151; /* bg-gray-700 */
+            border-color: #4b5563; /* bg-gray-600 */
+            cursor: pointer;
+            accent-color: #38bdf8; /* text-cyan-400 */
+        }
+        .checklist-item label {
+            flex-grow: 1;
+            cursor: pointer;
+            color: #d1d5db; /* text-gray-300 */
+        }
+        .checklist-item input[type="checkbox"]:checked + label {
+            text-decoration: line-through;
+            color: #6b7280; /* text-gray-500 */
+        }
+
+        /* Toggle for extra details */
+        .details-toggle {
+            margin-left: auto;
+        }
+        .details-toggle summary {
+            list-style: none;
+            cursor: pointer;
+            color: #38bdf8; /* text-cyan-400 */
+            font-size: 0.875rem;
+            font-weight: 500;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            background-color: #374151; /* bg-gray-700 */
+        }
+        .details-toggle summary:hover {
+            background-color: #4b5563; /* bg-gray-600 */
+        }
+        .details-toggle summary::-webkit-details-marker {
+            display: none;
+        }
+        .details-toggle > div {
+            margin-top: 0.75rem;
+            padding: 0.75rem;
+            background-color: #111827; /* bg-gray-900 */
+            border-radius: 6px;
+            font-size: 0.875rem;
+            color: #9ca3af; /* text-gray-400 */
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-300 font-sans p-4 sm:p-8">
+
+    <div class="max-w-4xl mx-auto">
+
+        <!-- Header -->
+        <header class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-white mb-4">Ratchet & Clank: Rift Apart</h1>
+            <h2 class="text-2xl font-semibold text-cyan-400">Platinum Trophy Roadmap</h2>
+        </header>
+
+        <!-- Intro Stats -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8 text-center">
+            <div class="bg-gray-800 p-4 rounded-lg">
+                <div class="text-sm text-gray-400 uppercase">Difficulty</div>
+                <div class="text-2xl font-bold text-white">2/10</div>
+            </div>
+            <div class="bg-gray-800 p-4 rounded-lg">
+                <div class="text-sm text-gray-400 uppercase">Time to Platinum</div>
+                <div class="text-2xl font-bold text-white">~10 Hours</div>
+            </div>
+            <div class="bg-gray-800 p-4 rounded-lg">
+                <div class="text-sm text-gray-400 uppercase">Missables</div>
+                <div class="text-2xl font-bold text-white">1 (Easy to farm)</div>
+            </div>
+            <div class="bg-gray-800 p-4 rounded-lg">
+                <div class="text-sm text-gray-400 uppercase">Difficulty Trophies?</div>
+                <div class="text-2xl font-bold text-white">No</div>
+            </div>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="mb-8">
+            <div class="flex justify-between mb-1">
+                <span class="text-base font-medium text-cyan-400">Platinum Progress</span>
+                <span class="text-sm font-medium text-cyan-400" id="progress-text">0/159 Done</span>
+            </div>
+            <div class="w-full bg-gray-700 rounded-full h-2.5">
+                <div id="progress-bar" class="bg-cyan-500 h-2.5 rounded-full" style="width: 0%"></div>
+            </div>
+        </div>
+
+        <!-- Main Roadmap Steps -->
+        <div class="space-y-4 mb-8">
+            <details class="section-accordion" open>
+                <summary>Step 1: Story Playthrough & Missables</summary>
+                <div class="section-accordion-content space-y-3">
+                    <p class="text-gray-400">Play on any difficulty (can be changed anytime). You can skip puzzles from the pause menu without voiding trophies. Focus on finishing the story and keep the one missable trophy in mind.</p>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="step1_story" class="checklist-box">
+                        <label for="step1_story">Complete the main story</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="step1_missable" class="checklist-box">
+                        <label for="step1_missable">Missable: Kill 5 Grunthors (Trophy: Extinction Event)</label>
+                        <details class="details-toggle">
+                            <summary>Details</summary>
+                            <div>
+                                <p><strong>MISSABLE!</strong> Found on Planet 2: Sargasso. Always kill these big dinosaurs when you see them. There are more than 5, but spawns change.</p>
+                                <p class="mt-2"><strong>Easy Farm:</strong> On your first visit, kill the first optional Grunthor you find. After killing it, jump into the swamp water to die. You will respawn, and the Grunthor will be back. Repeat 5 times to get the trophy easily and not worry about it later.</p>
+                            </div>
+                        </details>
+                    </div>
+                </div>
+            </details>
+
+            <details class="section-accordion">
+                <summary>Step 2: Collectibles & Mop-Up</summary>
+                <div class="section-accordion-content space-y-3">
+                    <p class="text-gray-400">After the story, select "Resume" to be placed before the final boss. You can now free-roam to all planets to clean up remaining collectibles and miscellaneous trophies.</p>
+                    <h4 class="text-lg font-semibold text-white pt-2">Required Collectibles:</h4>
+                    <div class="checklist-item"><input type="checkbox" id="step2_bears" class="checklist-box"><label for="step2_bears">Find all 9 CraiggerBears</label></div>
+                    <div class="checklist-item"><input type="checkbox" id="step2_spybots" class="checklist-box"><label for="step2_spybots">Find all 10 Spybots (for RYNO)</label></div>
+                    <div class="checklist-item"><input type="checkbox" id="step2_zurpstones" class="checklist-box"><label for="step2_zurpstones">Find all 60 Zurpstones (for a Spybot)</label></div>
+                    <div class="checklist-item"><input type="checkbox" id="step2_glitch" class="checklist-box"><label for="step2_glitch">Complete all 5 Glitch Challenges</label></div>
+                    <div class="checklist-item"><input type="checkbox" id="step2_blizon" class="checklist-box"><label for="step2_blizon">Hit 29 of 30 Blizon Crystals</label></div>
+                    <div class="checklist-item"><input type="checkbox" id="step2_goldbolts" class="checklist-box"><label for="step2_goldbolts">Collect 5 of 25 Gold Bolts</label></div>
+                    <div class="checklist-item"><input type="checkbox" id="step2_lorbs" class="checklist-box"><label for="step2_lorbs">Collect 3 of 12 Lorbs</label></div>
+                    <div class="checklist-item"><input type="checkbox" id="step2_armor" class="checklist-box"><label for="step2_armor">Acquire 3 Armor pieces (1 Head, 1 Torso, 1 Leg)</label></div>
+                </div>
+            </details>
+
+            <details class="section-accordion">
+                <summary>Step 3: Challenge Mode (New Game+)</summary>
+                <div class="section-accordion-content space-y-3">
+                    <p class="text-gray-400">From the Title Screen, start Challenge Mode. You only need to play for about 10 minutes to reach the first Ms. Zurkon vendor.</p>
+                    <div class="checklist-item"><input type="checkbox" id="step3_start" class="checklist-box"><label for="step3_start">Start Challenge Mode (NG+)</label></div>
+                    <div class="checklist-item"><input type="checkbox" id="step3_bouncer" class="checklist-box"><label for="step3_bouncer">Buy the Bouncer (Cost: 1 Bolt)</label></div>
+                    <div class="checklist-item"><input type="checkbox" id="step3_pixelizer" class="checklist-box"><label for="step3_pixelizer">Buy the Pixelizer (Cost: 1 Bolt)</label></div>
+                    <div class="checklist-item"><input type="checkbox" id="step3_stacked" class="checklist-box"><label for="step3_stacked">Get 'Fully Stacked' (Buy all 20 weapons)</label></div>
+                    <div class="checklist-item"><input type="checkbox" id="step3_plat" class="checklist-box"><label for="step3_plat">Trophy: Masters of the Multiverse (Platinum!)</label></div>
+                </div>
+            </details>
+        </div>
+
+        <!-- Main Trophy & Collectible Checklist -->
+        <h3 class="text-3xl font-bold text-white mb-6">Detailed Checklist</h3>
+
+        <!-- Automatic Story Trophies -->
+        <details class="section-accordion mb-4">
+            <summary>Automatic Story Trophies (15)</summary>
+            <div class="section-accordion-content">
+                <div class="checklist-item"><input type="checkbox" id="auto_1" class="checklist-box"><label for="auto_1">Rift Apart (Prologue)</label></div>
+                <div class="checklist-item"><input type="checkbox" id="auto_2" class="checklist-box"><label for="auto_2">Hide 'N Seekerpede (Sargasso Boss)</label></div>
+                <div class="checklist-item"><input type="checkbox" id="auto_3" class="checklist-box"><label for="auto_3">Victory! (First Battleplex Challenge)</label></div>
+                <div class="checklist-item"><input type="checkbox" id="auto_4" class="checklist-box"><label for="auto_4">This Crystal Is My Things (Blizar Prime)</label></div>
+                <div class="checklist-item"><input type="checkbox" id="auto_5" class="checklist-box"><label for="auto_5">Don't You Walk Away From Me (Savali)</label></div>
+                <div class="checklist-item"><input type="checkbox" id="auto_6" class="checklist-box"><label for="auto_6">It's Loose! (Cordelion)</label></div>
+                <div class="checklist-item"><input type="checkbox" id="auto_7" class="checklist-box"><label for="auto_7">Emotional Support Robot (Torren IV)</label></div>
+                <div class="checklist-item"><input type="checkbox" id="auto_8" class="checklist-box"><label for="auto_8">Rated Aaarrr! (Ardolis)</label></div>
+                <div class="checklist-item"><input type="checkbox" id="auto_9" class="checklist-box"><label for="auto_9">Return to Sender (Sargasso, 2nd Visit)</label></div>
+                <div class="checklist-item"><input type="checkbox" id="auto_10" class="checklist-box"><label for="auto_10">No Bones About It (Savali, 2nd Visit)</label></div>
+                <div class="checklist-item"><input type="checkbox" id="auto_11" class="checklist-box"><label for="auto_11">I'm the Warden Now (Viceron)</label></div>
+                <div class="checklist-item"><input type="checkbox" id="auto_12" class="checklist-box"><label for="auto_12">2 Fuzz 2 Nefarious (Final Boss)</label></div>
+                <div class="checklist-item"><input type="checkbox" id="auto_13" class="checklist-box"><label for="auto_13">Quantum Mechanic (First Clank Puzzle)</label></div>
+                <div class="checklist-item"><input type="checkbox" id="auto_14" class="checklist-box"><label for="auto_14">Glitch Challenge #1 (Corson V - Story)</label></div>
+                <div class="checklist-item"><input type="checkbox" id="auto_15" class="checklist-box"><label for="auto_15">Glitch Challenge #2 (Savali - Story)</label></div>
+            </div>
+        </details>
+
+        <!-- Planet-by-Planet Collectibles -->
+        <details class="section-accordion mb-4" open>
+            <summary>Planet-by-Planet Collectible Checklist</summary>
+            <div class="section-accordion-content space-y-4">
+
+                <!-- Planet 1: Corson V -->
+                <details class="section-accordion" open>
+                    <summary>Planet 1: Corson V (7 Items)</summary>
+                    <div class="section-accordion-content">
+                        <div class="checklist-item"><input type="checkbox" id="p1_gb1" class="checklist-box"><label for="p1_gb1">Gold Bolt #1 (Factory assembly line)</label><details class="details-toggle"><summary>Details</summary><div>After Ms. Zurkon, right side, up magnetic ramp to factory. Jump on a moving box on the assembly line, then wall-jump from the box to the balcony above. Wall-jump up again, turn around, and navigate past boxes to the bolt.</div></details></div>
+                        <div class="checklist-item"><input type="checkbox" id="p1_spy1" class="checklist-box"><label for="p1_spy1">Spybot #1 (Factory, linear path)</label><details class="details-toggle"><summary>Details</summary><div>From Gold Bolt #1, in the next hall. Wall-jump from a forklift's metal box to a moving box, to another forklift. Cross production lines. The Spybot is at the end of this factory path, unmissable before leaving.</div></details></div>
+                        <div class="checklist-item"><input type="checkbox" id="p1_bear1" class="checklist-box"><label for="p1_bear1">CraiggerBear #1 (Market stall)</label><details class="details-toggle"><summary>Details</summary><div>In the east of the market area, before Club Nefarious. Sitting on the counter of a stall with a purple tarp roof.</div></details></div>
+                        <div class="checklist-item"><input type="checkbox" id="p1_armor1" class="checklist-box"><label for="p1_armor1">Armor #1 (Robot Helmet - Pocket Dimension)</label><details class="details-toggle"><summary>Details</summary><div>Enter the Pocket Dimension in the east of the market area. Complete the platforming section inside to find the armor.</div></details></div>
+                        <div class="checklist-item"><input type="checkbox" id="p1_gb2" class="checklist-box"><label for="p1_gb2">Gold Bolt #2 (During "Follow the Phantom")</label><details class="details-toggle"><summary>Details</summary><div>During the objective "Follow the Phantom", you'll see this bolt. Grapple to the yellow rifts with L1 to reach it.</div></details></div>
+                        <div class="checklist-item"><input type="checkbox" id="p1_gb3" class="checklist-box"><label for="p1_gb3">Gold Bolt #3 (Requires Omniglove)</label><details class="details-toggle"><summary>Details</summary><div>After getting the Omniglove (story item), backtrack to the start of Corson V (north). Use the Omniglove on the wall panel with blue arrows to reach this bolt.</div></details></div>
+                        <div class="checklist-item"><input type="checkbox" id="p1_trophy_pocket" class="checklist-box"><label for="p1_trophy_pocket">Trophy: More Than Lint (Enter any Pocket Dimension)</label></div>
+                    </div>
+                </details>
+
+                <!-- Planet 2: Sargasso -->
+                <details class="section-accordion">
+                    <summary>Planet 2: Sargasso (8 Items + 60 Zurpstones)</summary>
+                    <div class="section-accordion-content">
+                        <div class="checklist-item"><input type="checkbox" id="p2_armor2" class="checklist-box"><label for="p2_armor2">Armor #2 (Ranger Helmet - Speetle path)</label><details class="details-toggle"><summary>Details</summary><div>During the story, you'll be forced into a Pocket Dimension to learn to ride Speetles. From the first Speetle, the armor is on an island straight ahead.</div></details></div>
+                        <div class="checklist-item"><input type="checkbox" id="p2_gb4" class="checklist-box"><label for="p2_gb4">Gold Bolt #4 (North, by rift)</label><details class="details-toggle"><summary>Details</summary><div>In the far north of the map, grapple to a yellow rift on a hill to find the bolt.</div></details></div>
+                        <div class="checklist-item"><input type="checkbox" id="p2_gb5" class="checklist-box"><label for="p2_gb5">Gold Bolt #5 (After Grunthor fight)</label><details class="details-toggle"><summary>Details</summary><div>After the story objective to "repair" the bridge and fight a Grunthor, look behind a green silo in that area.</div></details></div>
+                        <div class="checklist-item"><input type="checkbox" id="p2_armor3" class="checklist-box"><label for="p2_armor3">Armor #3 (Robot Boots - Pocket Dimension)</label><details class="details-toggle"><summary>Details</summary><div>After repairing the bridge and fighting the Grunthor, you'll enter Rivet's Hideout cave. Before going up the right side, find a Pocket Dimension at the bottom of the cave.</div></details></div>
+                        <div class="checklist-item"><input type="checkbox" id="p2_bear2" class="checklist-box"><label for="p2_bear2">CraiggerBear #2 (Rivet's Hideout)</label><details class="details-toggle"><summary>Details</summary><div>After defeating the Seekerpede boss, backtrack to Rivet's Hideout. The bear is on the couch by the TV.</div></details></div>
+                        <div class="checklist-item"><input type="checkbox" id="p2_armor4" class="checklist-box"><label for="p2_armor4">Armor #4 (Robot Chest - Pocket Dimension)</label><details class="details-toggle"><summary>Details</summary><div>After defeating the Seekerpede, backtrack to a southern Speetle. Ride it to the island in the southwest corner of the map to find a Pocket Dimension.</div></details></div>
+                        <div class="checklist-item"><input type="checkbox" id="p2_trophy_zurp10" class="checklist-box"><label for="p2_trophy_zurp10">Trophy: Feeding Friendsy (Collect 10 Zurpstones)</label><details class="details-toggle"><summary>Details</summary><div>Side quest "Help Trudi" becomes available after Planet 3. Return to Sargasso, start the quest, and collect 15 Zurpstones. Return to the quest giver. (You need 10 for the trophy).</div></details></div>
+                        <div class="checklist-item"><input type="checkbox" id="p2_armor5" class="checklist-box"><label for="p2_armor5">Armor #5 (Ranger Boots - 30 Zurpstones)</label><details class="details-toggle"><summary>Details</summary><div>Reward for collecting 30 Zurpstones for Trudi.</div></details></div>
+                        <div class="checklist-item"><input type="checkbox" id="p2_gb6" class="checklist-box"><label for="p2_gb6">Gold Bolt #6 (45 Zurpstones)</label><details class="details-toggle"><summary>Details</summary><div>Collecting 45 Zurpstones unlocks Trudi as a flying mount. The bolt is in a ring high in the air, southeast of the quest giver.</div></details></div>
+                        <div class="checklist-item"><input type="checkbox" id="p2_spy2" class="checklist-box"><label for="p2_spy2">Spybot #2 (All 60 Zurpstones)</label><details class="details-toggle"><summary>Details</summary><div>Reward for collecting all 60 Zurpstones. After 45, Trudi can shoot fire (R2) to get the ones on high perches.</div></details></div>
+                    </div>
+                </details>
+
+                <!-- Planet 3: Scarstu Debris Field -->
+                <details class="section-accordion">
+                    <summary>Planet 3: Scarstu Debris Field (10 Items)</summary>
+                    <div class="section-accordion-content">
+                        <div class="checklist-item"><input type="checkbox" id="p3_gb7" class="checklist-box"><label for="p3_gb7">Gold Bolt #7 (Under central platform)</label><details class="details-toggle"><summary>Details</summary><div>Near your ship, under the main platform. Jump off and glide (hold X) into it.</div></details></div>
+                        <div class="checklist-item"><input type="checkbox" id="p3_armor6" class="checklist-box"><label for="p3_armor6">Armor #6 (Q-Force Helmet - Pocket Dimension)</label><details class="details-toggle"><summary>Details</summary><div>In the Pocket Dimension in the northeast corner of the map.</div></details></div>
+                        <div class="checklist-item"><input type="checkbox" id="p3_bear3" class="checklist-box"><label for="p3_bear3">CraiggerBear #3 (Zurkie's bar entrance)</label><details class="details-toggle"><summary>Details</summary><div>On the story path to the Gastropub (Zurkie's). On a box to the left of the receptionist.</div></details></div>
+                        <div class="checklist-item"><input type="checkbox" id="p3_armor7" class="checklist-box"><label for="p3_armor7">Armor #7 (Pirate Boots - Bronze Challenge)</label><details class="details-toggle"><summary>Details</summary><div>Automatic reward for the first (story-required) Battleplex Challenge.</div></details></div>
+                        <div class="checklist-item"><input type="checkbox" id="p3_gb8" class="checklist-box"><label for="p3_gb8">Gold Bolt #8 (Bronze Challenge 4)</label><details class="details-toggle"><summary>Details</summary><div>Reward for completing the 4th Bronze Battleplex Challenge, "Bugtrax".</div></details></div>
+                        <div class="checklist-item"><input type="checkbox" id="p3_armor8" class="checklist-box"><label for="p3_armor8">Armor #8 (Carbonox Boots - Bronze Challenge 5)</label><details class="details-toggle"><summary>Details</summary><div>Reward for completing the 5th Bronze Battleplex Challenge, "A Grunthor Named Sue".</div></details></div>
+                        <div class="checklist-item"><input type="checkbox" id="p3_gb9" class="checklist-box"><label for="p3_gb9">Gold Bolt #9 (Silver Challenge 3)</label><details class="details-toggle"><summary>Details</summary><div>Reward for completing the 3rd Silver Battleplex Challenge, "Pest Control". (Silver cup unlocks late-game).</div></details></div>
+                        <div class="checklist-item"><input type="checkbox" id="p3_armor9" class="checklist-box"><label for="p3_armor9">Armor #9 (Carbonox Chest - Silver Challenge 5)</label><details class="details-toggle"><summary>Details</summary><div>Reward for completing the 5th Silver Battleplex Challenge, "Revenge of the Seekerpede".</div></details></div>
+                        <div class="checklist-item"><input type="checkbox" id="p3_spy3" class="checklist-box"><label for="p3_spy3">Spybot #3 (Gold Challenge 4)</label><details class="details-toggle"><summary>Details</summary><div>Reward for completing the 4th Gold Battleplex Challenge, "Vroom Around". (Gold cup unlocks after Planet 9).</div></details></div>
+                        <div class="checklist-item"><input type="checkbox" id="p3_spy4" class="checklist-box"><label for="p3_spy4">Spybot #4 (Requires Hurlshot)</label><details class="details-toggle"><summary>Details</summary><div>Requires Hurlshot (from Planet 6). Use the yellow Hurlshot to the right of Zurkie's bar entrance to reach a far northern platform.</div></details></div>
+                        <div class="checklist-item"><input type="checkbox" id="p3_armor10" class="checklist-box"><label for="p3_armor10">Armor #10 (Carbonox Helmet - Gold Challenge 5)</label><details class="details-toggle"><summary>Details</summary><div>Reward for completing the 5th Gold Battleplex Challenge, "Twice as Nice".</div></details></div>
+                    </div>
+                </details>
+
+                <!-- Planet 4: Savali -->
+                <details class="section-accordion">
+                    <summary>Planet 4: Savali (13 Items + 12 Lorbs)</summary>
+                    <div class="section-accordion-content">
+                        <div class="checklist-item"><input type="checkbox" id="p4_lorb1" class="checklist-box"><label for="p4_lorb1">Lorb #1 (West, 3 pressure plates)</label></div>
+                        <div class="checklist-item"><input type="checkbox" id="p4_lorb2" class="checklist-box"><label for="p4_lorb2">Lorb #2 (Far west, guarded)</label></div>
+                        <div class="checklist-item"><input type="checkbox" id="p4_lorb3" class="checklist-box"><label for="p4_lorb3">Lorb #3 (Northwest, on flying platform)</label></div>
+                        <div class="checklist-item"><input type="checkbox" id="p4_lorb4" class="checklist-box"><label for="p4_lorb4">Lorb #4 (Ramp jump to rock)</label></div>
+                        <div class="checklist-item"><input type="checkbox" id="p4_lorb5" class="checklist-box"><label for="p4_lorb5">Lorb #5 (Center, near Ms. Zurkon)</label></div>
+                        <div class="checklist-item"><input type="checkbox" id="p4_lorb6" class="checklist-box"><label for="p4_lorb6">Lorb #6 (Northeast, in cave)</label></div>
+                        <div class="checklist-item"><input type="checkbox" id="p4_lorb7" class="checklist-box"><label for="p4_lorb7">Lorb #7 (Southeast, guarded)</label></div>
+                        <div class="checklist-item"><input type="checkbox" id="p4_lorb8" class="checklist-box"><label for="p4_lorb8">Lorb #8 (Southeast, on mountain via rifts)</label></div>
+                        <div class="checklist-item"><input type="checkbox" id="p4_lorb9" class="checklist-box"><label for="p4_lorb9">Lorb #9 (Southeast, shoot 4 pillars)</label></div>
+                        <div class="checklist-item"><input type="checkbox" id="p4_lorb10" class="checklist-box"><label for="p4_lorb10">Lorb #10 (Southeast, 3 plates during wall-run)</label></div>
+                        <div class="checklist-item"><input type="checkbox" id="p4_lorb11" class="checklist-box"><label for="p4_lorb11">Lorb #11 (Southeast, behind boxes)</label></div>
+                        <div class="checklist-item"><input type="checkbox" id="p4_lorb12" class="checklist-box"><label for="p4_lorb12">Lorb #12 (Southernmost island, via rifts)</label></div>
+                        <div class="checklist-item"><input type="checkbox" id="p4_trophy_lorb" class="checklist-box"><label for="p4_trophy_lorb">Trophy: Might've Broken Something (Collect 3 Lorbs)</label><details class="details-toggle"><summary>Details</summary><div>You MUST also accept the side quest "Hunt for Lombax Lore" from the monk in the center of the map. If you have 3 lorbs, the trophy pops when you talk to him.</div></details></div>
+                        <div class="checklist-item"><input type="checkbox" id="p4_armor11" class="checklist-box"><label for="p4_armor11">Armor #11 (Wasteland Boots - 3 Lorbs)</label></div>
+                        <div class="checklist-item"><input type="checkbox" id="p4_armor12" class="checklist-box"><label for="p4_armor12">Armor #12 (Wasteland Chest - 7 Lorbs)</label></div>
+                        <div class="checklist-item"><input type="checkbox" id="p4_armor13" class="checklist-box"><label for="p4_armor13">Armor #13 (Wasteland Helmet - 12 Lorbs)</label></div>
+                        <div class="checklist-item"><input type="checkbox" id="p4_bear4" class="checklist-box"><label for="p4_bear4">CraiggerBear #4 (Southernmost island)</label><details class="details-toggle"><summary>Details</summary><div>At the very southern edge of the map, on a floating island. After the timed hoverboot section, check the left side of the small island.</div></details></div>
+                        <div class="checklist-item"><input type="checkbox" id="p4_spy5" class="checklist-box"><label for="p4_spy5">Spybot #5 (Northeast pirate ship cave)</label><details class="details-toggle"><summary>Details</summary><div>In the northeast corner, in a cave with a pirate ship. Entrance is south of the Spybot icon, in the waterfall area.</div></details></div>
+                        <div class="checklist-item"><input type="checkbox" id="p4_armor14" class="checklist-box"><label for="p4_armor14">Armor #14 (Pirate Chest - Flying platform)</label><details class="details-toggle"><summary>Details</summary><div>Chase the flying platform east of Ms. Zurkon. Grapple to it (L1) and stand on the pressure plate to stop it and get the armor.</div></details></div>
+                        <div class="checklist-item"><input type="checkbox" id="p4_armor15" class="checklist-box"><label for="p4_armor15">Armor #15 (Praetorian Boots - Pocket Dimension)</label><details class="details-toggle"><summary>Details</summary><div>Found inside a pocket dimension in the southeast of Savali.</div></details></div>
+                        <div class="checklist-item"><input type="checkbox" id="p4_armor16" class="checklist-box"><label for="p4_armor16">Armor #16 (Starshield Helmet - Pocket Dimension)</label><details class="details-toggle"><summary>Details</summary><div>Found inside another pocket dimension in the southeast of Savali.</div></details></div>
+                        <div class="checklist-item"><input type="checkbox" id="p4_gb10" class="checklist-box"><label for="p4_gb10">Gold Bolt #10 (Teleporter puzzle)</label><details class="details-toggle"><summary>Details</summary><div>Hit 3 green pressure plates with your hoverboots, starting from the northeast. Hitting all 3 quickly opens a purple portal at the 3rd plate, which teleports you to the bolt.</div></details></div>
+                        <div class="checklist-item"><input type="checkbox" id="p4_gb11" class="checklist-box"><label for="p4_gb11">Gold Bolt #11 (Flying platform)</label><details class="details-toggle"><summary>Details</summary><div>In the southeast corner. Chase a flying platform, grapple to it (L1), and stand on the pressure plate to stop it and grab the bolt.</div></details></div>
+                        <div class="checklist-item"><input type="checkbox" id="p4_gb12" class="checklist-box"><label for="p4_gb12">Gold Bolt #12 (Requires 2nd story visit)</label><details class="details-toggle"><summary>Details</summary><div>Only reachable after Planet 8. The story takes you back to Savali. During "Access the Catacombs" (underground in NW), find Glitch Challenge #5. Solving it unlocks this bolt.</div></details></div>
+                        <div class="checklist-item"><input type="checkbox" id="p4_glitch5" class="checklist-box"><label for="p4_glitch5">Glitch Challenge #5 (With Gold Bolt #12)</label></div>
+                    </div>
+                </details>
+
+                <!-- Planet 5: Blizar Prime -->
+                <details class="section-accordion">
+                    <summary>Planet 5: Blizar Prime (20 Items)</summary>
+                    <div class="section-accordion-content">
+                        <div class="checklist-item"><input type="checkbox" id="p5_blizon1" class="checklist-box"><label for="p5_blizon1">Blizon Crystal #1 (Story)</label></div>
+                        <div class="checklist-item"><input type="checkbox" id="p5_blizon2" class="checklist-box"><label for="p5_blizon2">Blizon Crystal #2 (Story)</label></div>
+                        <div class="checklist-item"><input type="checkbox" id="p5_blizon3" class="checklist-box"><label for="p5_blizon3">Blizon Crystal #3 (Story)</label></div>
+                        <div class="checklist-item"><input type="checkbox" id="p5_bear5" class="checklist-box"><label for="p5_bear5">CraiggerBear #5 (After 3rd Blizon)</label><details class="details-toggle"><summary>Details</summary><div>Immediately after hitting the third Blizon, in the same room, sitting on some metallic parts.</div></details></div>
+                        <div class="checklist-item"><input type="checkbox" id="p5_gb13" class="checklist-box"><label for="p5_gb13">Gold Bolt #13 (Lava area side path)</label><details class="details-toggle"><summary>Details</summary><div>In the lava (destroyed) dimension, take the optional side path on the left and follow it to the end.</div></details></div>
+                        <div class="checklist-item"><input type="checkbox" id="p5_blizon4" class="checklist-box"><label for="p5_blizon4">Blizon Crystal #4 (Central platform, left)</label></div>
+                        <div class="checklist-item"><input type="checkbox" id="p5_gb14" class="checklist-box"><label for="p5_gb14">Gold Bolt #14 (After Blizon #4)</label><details class="details-toggle"><summary>Details</summary><div>After hitting Blizon Crystal #4, this bolt is straight ahead. Use magnetic boots on the bridges to reach it.</div></details></div>
+                        <div class="checklist-item"><input type="checkbox" id="p5_armor17" class="checklist-box"><label for="p5_armor17">Armor #17 (Ranger Chest - Pocket Dimension)</label><details class="details-toggle"><summary>Details</summary><div>In a pocket dimension in the northeast, on the side quest path to find Chef Tulio.</div></details></div>
+                        <div class="checklist-item"><input type="checkbox" id="p5_blizon5" class="checklist-box"><label for="p5_blizon5">Blizon Crystal #5 (Chef Tulio side quest path)</label></div>
+                        <div class="checklist-item"><input type="checkbox" id="p5_blizon6" class="checklist-box"><label for="p5_blizon6">Blizon Crystal #6 (Chef Tulio side quest path)</label></div>
+                        <div class="checklist-item"><input type="checkbox" id="p5_blizon7" class="checklist-box"><label for="p5_blizon7">Blizon Crystal #7 (Chef Tulio side quest path)</label></div>
+                        <div class="checklist-item"><input type="checkbox" id="p5_gb15" class="checklist-box"><label for="p5_gb15">Gold Bolt #15 (After Blizon #7)</label></div>
+                        <div class="checklist-item"><input type="checkbox" id="p5_spy6" class="checklist-box"><label for="p5_spy6">Spybot #6 (Chef Tulio side quest reward)</label><details class="details-toggle"><summary>Details</summary><div>Complete the "Find the Missing Chef" side quest. After finding her, defend her honey machine from enemies to get the Spybot.</div></details></div>
+                        <div class="checklist-item"><input type="checkbox" id="p5_trophy_tulio" class="checklist-box"><label for="p5_trophy_tulio">Trophy: Sweet, Sweet Victory (Complete Chef Tulio's quest)</label></div>
+                        <div class="checklist-item"><input type="checkbox" id="p5_blizon8" class="checklist-box"><label for="p5_blizon8">Blizon Crystal #8 (West of central platform)</label></div>
+                        <div class="checklist-item"><input type="checkbox" id="p5_blizon9" class="checklist-box"><label for="p5_blizon9">Blizon Crystal #9 (Same area as #8)</label></div>
+                        <div class="checklist-item"><input type="checkbox" id="p5_armor18" class="checklist-box"><label for="p5_armor18">Armor #18 (Q-Force Boots - After Blizon #9)</label></div>
+                        <div class="checklist-item"><input type="checkbox" id="p5_blizon10_23" class="checklist-box"><label for="p5_blizon10_23">Blizon Crystals #10-23 (Story Path)</label><details class="details-toggle"><summary>Details</summary><div>The rest of the Blizon Crystals on this planet are on the mandatory story path, including during the long rail grind section and boss fight. Just hit every crystal you see. Make sure on the rail grind with 3 rails, you hit the crystals on BOTH the left and right rails (#20, #21).</div></details></div>
+                    </div>
+                </details>
+
+                <!-- Planet 6: Torren IV -->
+                <details class="section-accordion">
+                    <summary>Planet 6: Torren IV (5 Items)</summary>
+                    <div class="section-accordion-content">
+                        <div class="checklist-item"><input type="checkbox" id="p6_gb16" class="checklist-box"><label for="p6_gb16">Gold Bolt #16 (Right path at start)</label><details class="details-toggle"><summary>Details</summary><div>At the start, take the path right. Use hoverboots over the speed ramp to a wallrun section with the bolt at the end.</div></details></div>
+                        <div class="checklist-item"><input type="checkbox" id="p6_spy7" class="checklist-box"><label for="p6_spy7">Spybot #7 (Magnetic path)</label><details class="details-toggle"><summary>Details</summary><div>After the first swingshot rope, go down the magnetic path on your right (before Ms. Zurkon).</div></details></div>
+                        <div class="checklist-item"><input type="checkbox" id="p6_bear6" class="checklist-box"><label for="p6_bear6">CraiggerBear #6 (By Ms. Zurkon)</label><details class="details-toggle"><summary>Details</summary><div>Just before the Ms. Zurkon vendor (after the first swingshot), on a market stand with TVs on the right.</div></details></div>
+                        <div class="checklist-item"><input type="checkbox" id="p6_gb17" class="checklist-box"><label for="p6_gb17">Gold Bolt #17 (Rail grind)</label><details class="details-toggle"><summary>Details</summary><div>During the long, mandatory story rail grind, grapple to a yellow rift on your left to get the bolt.</div></details></div>
+                        <div class="checklist-item"><input type="checkbox" id="p6_armor19" class="checklist-box"><label for="p6_armor19">Armor #19 (Praetorian Helmet - Pocket Dimension)</label><details class="details-toggle"><summary>Details</summary><div>After getting the Hurlshot (story), you'll return to Ms. Zurkon. Use the Hurlshot to the next island. The Pocket Dimension is on the right side.</div></details></div>
+                    </div>
+                </details>
+
+                <!-- Planet 7: Cordelion -->
+                <details class="section-accordion">
+                    <summary>Planet 7: Cordelion (10 Items)</summary>
+                    <div class="section-accordion-content">
+                        <div class="checklist-item"><input type="checkbox" id="p7_blizon24" class="checklist-box"><label for="p7_blizon24">Blizon Crystal #24 (Story)</label></div>
+                        <div class="checklist-item"><input type="checkbox" id="p7_bear7" class="checklist-box"><label for="p7_bear7">CraiggerBear #7 (Snowy area)</label><details class="details-toggle"><summary>Details</summary><div>After hitting the first Blizon, you'll be in a snowy dimension. After sliding down 3 times, the bear is in the snow to your immediate left.</div></details></div>
+                        <div class="checklist-item"><input type="checkbox" id="p7_blizon25" class="checklist-box"><label for="p7_blizon25">Blizon Crystal #25 (East platform)</label><details class="details-toggle"><summary>Details</summary><div>Near the CraiggerBear, look for a platform far to the east. Use full-speed hoverboots (R1+L2) to jump over to it.</div></details></div>
+                        <div class="checklist-item"><input type="checkbox" id="p7_gb18" class="checklist-box"><label for="p7_gb18">Gold Bolt #18 (After Blizon #25)</label></div>
+                        <div class="checklist-item"><input type="checkbox" id="p7_gb19" class="checklist-box"><label for="p7_gb19">Gold Bolt #19 (Underground tunnel)</label><details class="details-toggle"><summary>Details</summary><div>After the first elevator ride, in the underground tunnel. First room on the left, grapple (L1) to the yellow rift behind the half-open door.</div></details></div>
+                        <div class="checklist-item"><input type="checkbox" id="p7_blizon26" class="checklist-box"><label for="p7_blizon26">Blizon Crystal #26 (Story)</label></div>
+                        <div class="checklist-item"><input type="checkbox" id="p7_spy8" class="checklist-box"><label for="p7_spy8">Spybot #8 (Forge room)</label><details class="details-toggle"><summary>Details</summary><div>In the forge (main objective). Look above the forge entrance and pull yourself up with the yellow rift.</div></details></div>
+                        <div class="checklist-item"><input type="checkbox" id="p7_blizon27" class="checklist-box"><label for="p7_blizon27">Blizon Crystal #27 (Story)</label></div>
+                        <div class="checklist-item"><input type="checkbox" id="p7_armor20" class="checklist-box"><label for="p7_armor20">Armor #20 (Starshield Chest - Pocket Dimension)</label><details class="details-toggle"><summary>Details</summary><div>After blowing up the forge and using the Blizon, a Pocket Dimension will be in the room you land in.</div></details></div>
+                        <div class="checklist-item"><input type="checkbox" id="p7_glitch3" class="checklist-box"><label for="p7_glitch3">Glitch Challenge #3 (Story)</label></div>
+                        <div class="checklist-item"><input type="checkbox" id="p7_gb20" class="checklist-box"><label for="p7_gb20">Gold Bolt #20 (Underwater section)</label><details class="details-toggle"><summary>Details</summary><div>In the underwater mag-boot section. At the fork, take the right path and use mag-jump (Circle) up a wall to find the bolt.</div></details></div>
+                        <div class="checklist-item"><input type="checkbox" id="p7_blizon28_30" class="checklist-box"><label for="p7_blizon28_30">Blizon Crystals #28-30 (Story)</label></div>
+                    </div>
+                </details>
+
+                <!-- Planet 8: Ardolis -->
+                <details class="section-accordion">
+                    <summary>Planet 8: Ardolis (7 Items)</summary>
+                    <div class="section-accordion-content">
+                        <div class="checklist-item"><input type="checkbox" id="p8_armor21" class="checklist-box"><label for="p8_armor21">Armor #21 (Starshield Boots - Pocket Dimension)</label><details class="details-toggle"><summary>Details</summary><div>After the room where the world glitches purple, take the optional path right and drop down to a beach to find the Pocket Dimension.</div></details></div>
+                        <div class="checklist-item"><input type="checkbox" id="p8_gb21" class="checklist-box"><label for="p8_gb21">Gold Bolt #21 (Pirate Trials, 2nd room)</label><details class="details-toggle"><summary>Details</summary><div>In the "Pirate Trials". After the karaoke room, you'll enter a room with a Grunthor skeleton. On the left is a Glitch Challenge. Solve it to get the bolt.</div></details></div>
+                        <div class="checklist-item"><input type="checkbox" id="p8_glitch4" class="checklist-box"><label for="p8_glitch4">Glitch Challenge #4 (With Gold Bolt #21)</label></div>
+                        <div class="checklist-item"><input type="checkbox" id="p8_armor22" class="checklist-box"><label for="p8_armor22">Armor #22 (Pirate Helmet - Pirate Trials)</label><details class="details-toggle"><summary>Details</summary><div>Automatic, unmissable reward for completing the story-related pirate trials.</div></details></div>
+                        <div class="checklist-item"><input type="checkbox" id="p8_bear8" class="checklist-box"><label for="p8_bear8">CraiggerBear #8 (Pirate Trials, last room)</label><details class="details-toggle"><summary>Details</summary><div>In the same room where you are awarded the Pirate Helmet, by a pirate chest.</div></details></div>
+                        <div class="checklist-item"><input type="checkbox" id="p8_spy9" class="checklist-box"><label for="p8_spy9">Spybot #9 (Northeast island)</label><details class="details-toggle"><summary>Details</summary><div>After finishing the planet's story, go back to Ms. Zurkon. Take the path right, use swingshot to a pirate ship. Use elevator, more swingshots. Look right (northeast) to a sandy island. Use hoverboots to jump to the broken bridges and get to the island.</div></details></div>
+                        <div class="checklist-item"><input type="checkbox" id="p8_gb22" class="checklist-box"><label for="p8_gb22">Gold Bolt #22 (Speetle ramp)</label><details class="details-toggle"><summary>Details</summary><div>Next to Spybot #9, use the Speetle. Take the left path on the water. Boost (R1) over the ramp with explosives to get the bolt.</div></details></div>
+                    </div>
+                </details>
+
+                <!-- Planet 9: Viceron -->
+                <details class="section-accordion">
+                    <summary>Planet 9: Viceron (7 Items)</summary>
+                    <div class="section-accordion-content">
+                        <div class="checklist-item"><input type="checkbox" id="p9_gb23" class="checklist-box"><label for="p9_gb23">Gold Bolt #23 (East processing area)</label><details class="details-toggle"><summary>Details</summary><div>After Ms. Zurkon, follow the path right and phantom dash through the checkpoints. The bolt is in the area furthest to the right (east).</div></details></div>
+                        <div class="checklist-item"><input type="checkbox" id="p9_spy10" class="checklist-box"><label for="p9_spy10">Spybot #10 (Ventilation shaft)</label><details class="details-toggle"><summary>Details</summary><div>Story path. You will destroy a fan to enter a ventilation shaft. The Spybot is inside, just before you drop out.</div></details></div>
+                        <div class="checklist-item"><input type="checkbox" id="p9_bear9" class="checklist-box"><label for="p9_bear9">CraiggerBear #9 (Clank's cell room)</label><details class="details-toggle"><summary>Details</summary><div>In the room where you free Clank. After freeing him, check the right (east) side of the room on a bench.</div></details></div>
+                        <div class="checklist-item"><input type="checkbox" id="p9_gb24" class="checklist-box"><label for="p9_gb24">Gold Bolt #24 (After rescuing Clank)</label><details class="details-toggle"><summary>Details</summary><div>In the next outside area after rescuing Clank, in the top right corner (northeast).</div></details></div>
+                        <div class="checklist-item"><input type="checkbox" id="p9_armor23" class="checklist-box"><label for="p9_armor23">Armor #23 (Q-Force Chest - Cell block)</label><details class="details-toggle"><summary>Details</summary><div>In the room where Ratchet's and Kit's cell ends up. It's in an open prison cell on the left side, second floor.</div></details></div>
+                        <div class="checklist-item"><input type="checkbox"id="p9_armor24" class="checklist-box"><label for="p9_armor24">Armor #24 (Praetorian Chest - Pocket Dimension)</label><details class="details-toggle"><summary>Details</summary><div>In the pocket dimension to the right of Ms. Zurkon's shop, on your way to the Warden's Office.</div></details></div>
+                        <div class="checklist-item"><input type="checkbox" id="p9_gb25" class="checklist-box"><label for="p9_gb25">Gold Bolt #25 (Riot cell block)</label><details class="details-toggle"><summary>Details</summary><div>After the Warden's office, you'll reach a cell block with a riot. Check the cells to the left of where you enter.</div></details></div>
+                    </div>
+                </details>
+            </div>
+        </details>
+
+        <!-- Misc & Combat Trophies -->
+        <details class="section-accordion mb-4">
+            <summary>Miscellaneous & Combat Trophies (20)</summary>
+            <div class="section-accordion-content">
+                <!-- Weapon Leveling -->
+                <div class="checklist-item"><input type="checkbox" id="misc_lvl5" class="checklist-box"><label for="misc_lvl5">Trophy: They Blow Up So Fast (Get a weapon to Level 5)</label></div>
+                <div class="checklist-item"><input type="checkbox" id="misc_upgrade" class="checklist-box"><label for="misc_upgrade">Trophy: There's Even a Cupholder (Fully upgrade one weapon)</label><details class="details-toggle"><summary>Details</summary><div>Requires a weapon to be Level 5. Then, buy all Raritanium upgrades for it. The starting Blast Pistol is cheapest (31 Raritanium).</div></details></div>
+                <div class="checklist-item"><input type="checkbox" id="misc_wheel" class="checklist-box"><label for="misc_wheel">Trophy: Full Rack (Fill a Weapon Wheel - 8 weapons)</label></div>
+                
+                <!-- Battleplex -->
+                <div class="checklist-item"><input type="checkbox" id="misc_goldcup" class="checklist-box"><label for="misc_goldcup">Trophy: Can't Stop Me (Complete a Gold Cup Battleplex Challenge)</label><details class="details-toggle"><summary>Details</summary><div>Gold Cup unlocks after Planet 9. Return to Zurkie's and beat any Gold Challenge (can be on easiest difficulty).</div></details></div>
+                
+                <!-- Misc World -->
+                <div class="checklist-item"><input type="checkbox" id="misc_jukebox" class="checklist-box"><label for="misc_jukebox">Trophy: Hey Lombax DJ (Play 3 songs on Zurkie's Jukebox)</label><details class="details-toggle"><summary>Details</summary><div>At Zurkie's bar (Planet 3), walk up to the jukebox and press Triangle to *change the song*. Back out, interact, change song. Repeat 3 times.</div></details></div>
+                <div class="checklist-item"><input type="checkbox" id="misc_balloons" class="checklist-box"><label for="misc_balloons">Trophy: BOING! (Bounce on Big Al, Clank, & Qwark balloons)</label><details class="details-toggle"><summary>Details</summary><div>Big Al is automatic in the Prologue. Clank & Qwark are in a Pocket Dimension in the northeast of Corson V (market area).</div></details></div>
+                <div class="checklist-item"><input type="checkbox" id="misc_hotsprings" class="checklist-box"><label for="misc_hotsprings">Trophy: Max Relax (Find citizens by hot springs on Savali)</label><details class="details-toggle"><summary>Details</summary><div>On Planet 4: Savali, just south of the central Ms. Zurkon. Walk up to the robots in the sun beds above the hot spring.</div></details></div>
+                <div class="checklist-item"><input type="checkbox" id="misc_tv" class="checklist-box"><label for="misc_tv">Trophy: Lombax and Chill (Turn on the TV in Rivet's Hideout)</label><details class="details-toggle"><summary>Details</summary><div>On Planet 2: Sargasso, *after* defeating the Seekerpede boss, backtrack to Rivet's Hideout and interact with the TV.</div></details></div>
+                <div class="checklist-item"><input type="checkbox" id="misc_grind" class="checklist-box"><label for="misc_grind">Trophy: Alert the Sponsors (Perform 5 Trick Jumps on a Grind Rail)</label><details class="details-toggle"><summary>Details</summary><div>On any grind rail (e.g., the long one on Planet 6: Torren IV), double-jump (X, X) five times.</div></details></div>
+                <div class="checklist-item"><input type="checkbox" id="misc_hoverboots" class="checklist-box"><label for="misc_hoverboots">Trophy: Must Go Faster (Trick Jump at max Hoverboot speed)</label><details class="details-toggle"><summary>Details</summary><div>Get Hoverboots on Planet 4. Hold R1 and press L2 repeatedly to boost to max speed. Then jump (X) and do a trick (X again).</div></details></div>
+
+                <!-- Combat Trophies -->
+                <div class="checklist-item"><input type="checkbox" id="misc_ice" class="checklist-box"><label for="misc_ice">Trophy: Icebreaker (Melee 5 frozen enemies)</label><details class="details-toggle"><summary>Details</summary><div>Use the "Cold Snap" weapon to freeze enemies, then smash them with your melee (Square). Easiest in the Silver Battleplex Challenge "Freezer Pop".</div></details></div>
+                <div class="checklist-item"><input type="checkbox" id="misc_ricochet" class="checklist-box"><label for="misc_ricochet">Trophy: No Need for Multiball (Kill 2 enemies with one Ricochet round)</label><details class="details-toggle"><summary>Details</summary><div>Use the "Ricochet" weapon. Shoot at a group of weak enemies (like the toads on Sargasso).</div></details></div>
+                <div class="checklist-item"><input type="checkbox" id="misc_void" class="checklist-box"><label for="misc_void">Trophy: Return Policy (Kill 10 enemies with returned shots)</label><details class="details-toggle"><summary>Details</summary><div>Buy "Void Repulser" and level it to 5 (becomes "Void Reactor"). Hold L2 to create a shield, absorb enemy bullets (shield turns purple), then press R2 to shoot them back. Farm in the first Bronze Battleplex Challenge.</div></details></div>
+                <div class="checklist-item"><input type="checkbox" id="misc_headshot" class="checklist-box"><label for="misc_headshot">Trophy: Hole Puncher (Get 20 headshots with the Headhunter)</label><details class="details-toggle"><summary>Details</summary><div>Buy the "Headhunter" sniper (late-game). Farm headshots. Easiest in the Gold Battleplex Challenge "A Good Time to Zoom".</div></details></div>
+                <div class="checklist-item"><input type="checkbox" id="misc_fungi" class="checklist-box"><label for="misc_fungi">Trophy: Life of the Party (Deploy 50 Mr. Fungis)</label><details class="details-toggle"><summary>Details</summary><div>Simply use the "Mr. Fungi" weapon 50 times. Just fire off ammo whenever you have it.</div></details></div>
+                <div class="checklist-item"><input type="checkbox" id="misc_topiary" class="checklist-box"><label for="misc_topiary">Trophy: Extreme Gardening (Defeat 30 enemies while Topiary'd)</label><details class="details-toggle"><summary>Details</summary><div>Use the "Topiary Sprinkler" to turn enemies into bushes (green). Kill them with any other weapon while they are green.</div></details></div>
+                <div class="checklist-item"><input type="checkbox" id="misc_heads" class="checklist-box"><label for="misc_heads">Trophy: Just Stay Down (Defeat 30 ejected Nefarious Trooper heads)</label><details class="details-toggle"><summary>Details</summary><div>When fighting Nefarious Troopers, sometimes their head ejects after you destroy their body. Destroy 30 of these ejected heads. Farm in the Silver Battleplex Challenge "Ka-boomstick Blast".</div></details></div>
+                <div class="checklist-item"><input type="checkbox" id="misc_trophy_armor1" class="checklist-box"><label for="misc_trophy_armor1">Trophy: Sartorial Steel (Acquire one piece of armor)</label></div>
+                <div class="checklist-item"><input type="checkbox" id="misc_trophy_armor3" class="checklist-box"><label for="misc_trophy_armor3">Trophy: Does This Make My Tail Look Big? (Equip Head, Torso, Leg armor)</label></div>
+                <div class="checklist-item"><input type="checkbox" id="misc_trophy_ryno" class="checklist-box"><label for="misc_trophy_ryno">Trophy: Aim to Misbehave (Acquire the RYNO)</label><details class="details-toggle"><summary>Details</summary><div>Unlocked after collecting all 10 Spybots. Then "buy" it for free from Ms. Zurkon.</div></details></div>
+            </div>
+        </details>
+
+        <!-- Footer / Reset -->
+        <footer class="text-center mt-12 mb-8">
+            <button id="resetProgress" class="bg-red-700 hover:bg-red-800 text-white font-medium py-2 px-4 rounded-lg transition-colors">
+                Reset All Progress
+            </button>
+            <p class="text-xs text-gray-600 mt-4">This roadmap saves your progress in your browser's local storage. Clicking "Reset" will clear this data.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const allCheckboxes = document.querySelectorAll('.checklist-box');
+            const progressBar = document.getElementById('progress-bar');
+            const progressText = document.getElementById('progress-text');
+            const resetButton = document.getElementById('resetProgress');
+            const totalItems = allCheckboxes.length;
+
+            function updateProgress() {
+                const checkedItems = document.querySelectorAll('.checklist-box:checked').length;
+                const percentage = totalItems > 0 ? (checkedItems / totalItems) * 100 : 0;
+
+                progressBar.style.width = `${percentage}%`;
+                progressText.innerText = `${checkedItems}/${totalItems} Done`;
+
+                // Save progress
+                saveProgress();
+            }
+
+            function saveProgress() {
+                allCheckboxes.forEach(item => {
+                    localStorage.setItem(`rc_roadmap_${item.id}`, item.checked);
+                });
+            }
+
+            function loadProgress() {
+                allCheckboxes.forEach(item => {
+                    const savedState = localStorage.getItem(`rc_roadmap_${item.id}`);
+                    if (savedState === 'true') {
+                        item.checked = true;
+                    } else {
+                        item.checked = false;
+                    }
+                });
+                updateProgress();
+            }
+
+            function resetProgress() {
+                // We use a confirm modal substitute since alert/confirm are blocked
+                const confirmation = window.prompt("Are you sure you want to reset all progress? This cannot be undone. Type 'RESET' to confirm.");
+                if (confirmation === 'RESET') {
+                    allCheckboxes.forEach(item => {
+                        item.checked = false;
+                        localStorage.removeItem(`rc_roadmap_${item.id}`);
+                    });
+                    updateProgress();
+                }
+            }
+
+            // --- Event Listeners ---
+            
+            // Load progress on page load
+            loadProgress();
+
+            // Add change listener to all checkboxes
+            allCheckboxes.forEach(item => {
+                item.addEventListener('change', updateProgress);
+            });
+
+            // Add click listener for reset button
+            resetButton.addEventListener('click', resetProgress);
+
+            // Add click listener to labels to toggle checkboxes
+            document.querySelectorAll('.checklist-item label').forEach(label => {
+                label.addEventListener('click', (e) => {
+                    const checkboxId = label.getAttribute('for');
+                    const checkbox = document.getElementById(checkboxId);
+                    if (checkbox) {
+                        checkbox.checked = !checkbox.checked;
+                        // Manually trigger change event
+                        checkbox.dispatchEvent(new Event('change'));
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
