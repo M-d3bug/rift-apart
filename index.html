@@ -24,6 +24,9 @@
             --danger: #ef4444;
             --border: #333333;
             --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            --trophy-gold: #ffd700;
+            --trophy-silver: #c0c0c0;
+            --trophy-bronze: #cd7f32;
         }
 
         [data-theme="light"] {
@@ -63,6 +66,152 @@
             border-radius: 15px;
             box-shadow: var(--card-shadow);
             border: 1px solid var(--border);
+            position: relative;
+        }
+
+        .milestone-celebration {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--bg-secondary);
+            padding: 30px 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            z-index: 10000;
+            text-align: center;
+            display: none;
+            border: 2px solid var(--accent);
+            animation: milestonePop 0.5s ease;
+        }
+
+        @keyframes milestonePop {
+            0% {
+                transform: translate(-50%, -50%) scale(0);
+                opacity: 0;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.1);
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+        }
+
+        .milestone-celebration h2 {
+            color: var(--accent);
+            margin-bottom: 10px;
+            font-size: 2rem;
+        }
+
+        .milestone-celebration p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: var(--accent);
+            position: absolute;
+            animation: confettiFall 3s ease-out forwards;
+        }
+
+        @keyframes confettiFall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        .undo-redo-controls {
+            display: none;
+        }
+
+        .dragging {
+            opacity: 0.5;
+            transform: rotate(2deg);
+        }
+
+        .drag-over {
+            border: 2px dashed var(--accent);
+            background: rgba(124, 58, 237, 0.1);
+        }
+
+        .pull-to-refresh {
+            position: fixed;
+            top: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 0 0 20px 20px;
+            font-weight: bold;
+            transition: top 0.3s ease;
+            z-index: 9999;
+        }
+
+        .pull-to-refresh.show {
+            top: 0;
+        }
+
+        @media (max-width: 768px) {
+            .theme-toggle {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+
+            .item-content {
+                padding: 20px;
+            }
+
+            .item-checkbox {
+                width: 28px;
+                height: 28px;
+                margin-right: 20px;
+            }
+
+            .explanation-toggle {
+                width: 32px;
+                height: 32px;
+                font-size: 18px;
+            }
+
+            .item-type {
+                padding: 8px 12px;
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (orientation: landscape) and (max-height: 600px) {
+            .container {
+                padding: 10px;
+            }
+
+            header {
+                padding: 20px 0;
+                margin-bottom: 20px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .planet-header {
+                padding: 15px;
+            }
+
+            .item-content {
+                padding: 12px;
+            }
         }
 
         h1 {
@@ -128,6 +277,36 @@
         .stat-label {
             color: var(--text-secondary);
             font-size: 0.9rem;
+        }
+
+        .trophy-counter {
+            background: linear-gradient(135deg, var(--trophy-gold), var(--trophy-silver));
+            color: var(--bg-primary);
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+            animation: shimmer 2s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        .trophy-icon {
+            font-size: 1.5rem;
+            animation: bounce 1s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-3px); }
         }
 
         .roadmap-overview {
@@ -251,11 +430,28 @@
             color: var(--text-secondary);
         }
 
+        .checklist-item.trophy-item {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(192, 192, 192, 0.1));
+            border: 2px solid var(--trophy-gold);
+            box-shadow: 0 4px 8px rgba(255, 215, 0, 0.2);
+        }
+
+        .checklist-item.trophy-item.completed {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(192, 192, 192, 0.2));
+            border-color: var(--trophy-gold);
+            box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4);
+        }
+
         .item-content {
             display: flex;
             align-items: center;
             padding: 15px;
             cursor: pointer;
+        }
+
+        .trophy-icon-item {
+            font-size: 1.2rem;
+            margin-right: 15px;
         }
 
         .item-checkbox {
@@ -284,29 +480,33 @@
             font-size: 14px;
         }
 
-        .item-text {
-            flex: 1;
-            font-size: 1rem;
-            font-weight: 500;
+        .item-type.trophy { background: linear-gradient(135deg, var(--trophy-gold), var(--trophy-silver)); color: var(--bg-primary); font-weight: bold; }
+
+        .item-checkbox.trophy-checkbox {
+            width: 22px;
+            height: 22px;
+            border: 2px solid var(--trophy-gold);
+            border-radius: 6px;
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            background: transparent;
         }
 
-        .item-type {
-            background: var(--accent);
-            color: white;
-            padding: 5px 10px;
-            border-radius: 15px;
-            font-size: 0.7rem;
-            font-weight: 600;
-            margin-left: 10px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+        .checklist-item.completed .item-checkbox.trophy-checkbox {
+            background: var(--trophy-gold);
+            border-color: var(--trophy-gold);
+            transform: scale(1.1);
         }
 
-        .item-type.story { background: var(--success); }
-        .item-type.missable { background: var(--danger); }
-        .item-type.collectible { background: var(--warning); }
-        .item-type.weapon { background: #8b5cf6; }
-        .item-type.misc { background: #06b6d4; }
+        .checklist-item.completed .item-checkbox.trophy-checkbox::after {
+            content: '✓';
+            color: var(--bg-primary);
+            font-weight: bold;
+            font-size: 14px;
+        }
 
         .item-explanation {
             padding: 0 15px 15px 52px;
@@ -504,15 +704,48 @@
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        .item-text {
+            flex: 1;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .item-type {
+            background: var(--accent);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-left: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .item-type.story { background: var(--success); }
+        .item-type.missable { background: var(--danger); }
+        .item-type.collectible { background: var(--warning); }
+        .item-type.weapon { background: #8b5cf6; }
+        .item-type.misc { background: #06b6d4; }
     </style>
 </head>
 <body>
     <div class="container">
+        <div class="pull-to-refresh" id="pullToRefresh">↻ Pull to Refresh</div>
+        <div class="milestone-celebration" id="milestoneCelebration">
+            <h2 id="milestoneTitle">🎉 Milestone Reached!</h2>
+            <p id="milestoneMessage">You're making great progress!</p>
+        </div>
         <header>
             <h1>🏆 Ratchet & Clank Rift Apart</h1>
             <p class="subtitle">Platinum Trophy Roadmap & Checklist</p>
             <div class="progress-bar">
                 <div class="progress-fill" id="progressBar">0%</div>
+            </div>
+            <div class="trophy-counter">
+                <span class="trophy-icon">🏆</span>
+                <span id="trophyCount">0</span> / <span id="totalTrophies">0</span> Trophies Earned
             </div>
             <div class="stats">
                 <div class="stat-card">
@@ -526,19 +759,20 @@
             </div>
         </header>
 
+        <!-- *** MODIFIED ROADMAP OVERVIEW *** -->
         <div class="roadmap-overview">
             <h2>📋 Optimized Roadmap Overview</h2>
             <ul class="roadmap-steps">
-                <li><strong>Step 1:</strong> Play through story on easy difficulty, kill all Grunthors on Sargasso (missable trophy)</li>
-                <li><strong>Step 2:</strong> After story, free roam and collect all CraiggerBears, Spybots, and complete Glitch Challenges</li>
-                <li><strong>Step 3:</strong> Collect 29/30 Blizon Crystals on Blizar Prime & Cordelion</li>
-                <li><strong>Step 4:</strong> Buy all weapons from story, then start Challenge Mode for last 2 weapons</li>
+                <li><strong>Step 1:</strong> Play through the story on any difficulty. Focus on the missable trophy <strong>Extinction Event</strong> (Kill 5 Grunthors) on Sargasso. Farm the first one by respawning if needed.</li>
+                <li><strong>Step 2:</strong> After the story, "Resume" your save to free roam. Clean up all remaining collectibles (All Spybots, all CraiggerBears, all Glitch Challenges, 29/30 Blizon Crystals) and any miscellaneous combat trophies.</li>
+                <li><strong>Step 3:</strong> Once you have all 18 story weapons and the RYNO (from Spybots), start "Challenge Mode" (NG+). Play the prologue until the first Ms. Zurkon and buy the final 2 weapons (Bouncer & Pixelizer) to get <strong>Fully Stacked</strong> and the Platinum.</li>
             </ul>
             <div class="important-note">
                 <h4>⚠️ CRITICAL MISSABLE TROPHY</h4>
                 <p>Kill 5 Grunthors on Sargasso during the story! After the story they stop respawning. Farm the first one by jumping in swamp water to respawn it.</p>
             </div>
         </div>
+        <!-- *** END MODIFIED SECTION *** -->
 
         <main id="checklistContainer">
             <!-- Planets will be generated by JavaScript -->
@@ -548,6 +782,9 @@
             <div class="menu-container">
                 <button class="menu-toggle" id="menuToggle" onclick="toggleMenu()">+</button>
                 <div class="menu-dropdown" id="menuDropdown">
+                    <button class="menu-item" onclick="toggleTheme()">
+                        <span id="themeIcon">🌙</span> Toggle Theme
+                    </button>
                     <button class="menu-item" onclick="expandAll()">
                         <span>📖</span> Expand All
                     </button>
@@ -563,48 +800,59 @@
     </div>
 
     <script>
+        // *** MODIFIED CHECKLIST DATA ***
         const checklistData = [
             {
                 planet: "Planet 1: Corson V",
                 items: [
-                    { id: "corson_1", text: "Reach market area (story)", type: "story", explanation: "Automatic story progression after prologue" },
-                    { id: "corson_2", text: "Gold Bolt #1 - Factory assembly line", type: "collectible", explanation: "Jump on moving box, wall-jump to balcony, then wall-jump up blue hexagon wall" },
-                    { id: "corson_3", text: "Spybot #1 - Factory (forced)", type: "collectible", explanation: "Forced pickup in factory, cannot miss" },
-                    { id: "corson_4", text: "CraiggerBear #1 - Market stall", type: "collectible", explanation: "On counter of market stall with purple tarp, before Club Nefarious" },
-                    { id: "corson_5", text: "Armor #1 - Pocket Dimension", type: "collectible", explanation: "Enter purple portal in east market area" },
-                    { id: "corson_6", text: "Gold Bolt #2 - Grapple to yellow rift", type: "collectible", explanation: "During 'Follow the Phantom' objective" },
-                    { id: "corson_7", text: "Gold Bolt #3 - Backtrack with Omniglove", type: "collectible", explanation: "After getting Omniglove, backtrack to start and run across wall panel" },
-                    { id: "corson_8", text: "Glitch Challenge #1 - Story forced", type: "story", explanation: "Automatic story progression" },
-                    { id: "corson_9", text: "Enter Pocket Dimension", type: "misc", explanation: "Purple portals marked on map, many available" },
-                    { id: "corson_10", text: "Bounce on parade balloons", type: "misc", explanation: "Clank & Qwark balloons in northeast Pocket Dimension" }
+                    { id: "corson_1", text: "🏆 Rift Apart - Get Separated in Nefarious City", type: "trophy", explanation: "Automatic story-related trophy, cannot be missed. Unlocks after the Prologue when you reach the market area of the 1st planet Corson V." },
+                    { id: "corson_2", text: "🏆 BOING! - Bounce on Big Al, Clank, and Qwark's Parade Balloons", type: "trophy", explanation: "Big Al: You automatically bounce on Big Al's balloon during the Prologue. Clank & Qwark: Found in a hidden Pocket Dimension in the northeast of Corson V during 'Find the Phantom at Club Nefarious'." },
+                    { id: "corson_3", text: "🏆 More Than Lint - Enter a Hidden Pocket Dimension", type: "trophy", explanation: "Pocket Dimensions are marked with a purple shard icon on the map when you go near them. They are purple portals. The northeast Pocket Dimension during 'Find the Phantom at Club Nefarious' has Clank & Qwark balloons." },
+                    { id: "corson_4", text: "🏆 Life of the Party - Deploy 50 Mr. Fungis", type: "trophy", explanation: "Buy Mr. Fungi weapon from Ms. Zurkon (3,000 Bolts). Simply shoot 50 of these (use up 50 ammo) - you don't need to hit enemies, just empty the ammo whenever you have it." },
+                    { id: "corson_5", text: "🏆 It's So Fluffy! - Find a CraiggerBear", type: "trophy", explanation: "CraiggerBear #1 - On counter of market stall with purple tarp, before Club Nefarious. This trophy unlocks for finding your first one." },
+                    { id: "corson_6", text: "🏆 Sartorial Steel - Acquire a Piece of Armor", type: "trophy", explanation: "Armor #1 - Enter purple portal in east market area to find Pocket Dimension with armor piece." },
+                    { id: "corson_7", text: "Gold Bolt #1 - Factory assembly line", type: "collectible", explanation: "Jump on moving box, wall-jump to balcony, then wall-jump up blue hexagon wall" },
+                    { id: "post_1", text: "🏆 Shiny! - Collect a Gold Bolt", type: "trophy", explanation: "Unlocks after collecting your first Gold Bolt. There are 25 total, but this trophy is for just one." },
+                    { id: "corson_8", text: "Spybot #1 - Factory (forced)", type: "collectible", explanation: "Forced pickup in factory, cannot miss" },
+                    { id: "post_8", text: "🏆 Planning Some Destruction - Collect a Spybot", type: "trophy", explanation: "Unlocks after collecting your first Spybot. There are 10 total. This one is automatic." },
+                    { id: "corson_9", text: "Gold Bolt #2 - Grapple to yellow rift", type: "collectible", explanation: "During 'Follow the Phantom' objective" },
+                    { id: "corson_10", text: "Gold Bolt #3 - Backtrack with Omniglove", type: "collectible", explanation: "After getting Omniglove, backtrack to start and run across wall panel" },
+                    { id: "corson_11", text: "Glitch Challenge #1 - Story forced", type: "story", explanation: "Automatic story progression" }
                 ]
             },
             {
                 planet: "Planet 2: Sargasso (CRITICAL - MISSABLE TROPHY)",
                 items: [
-                    { id: "sargasso_1", text: "KILL 5 GRUNTHORS (MISSABLE!)", type: "missable", explanation: "Big dinosaurs. Farm first one: kill, jump in swamp water to respawn, repeat 5x" },
-                    { id: "sargasso_2", text: "Defeat Seekerpede boss", type: "story", explanation: "Automatic story progression" },
-                    { id: "sargasso_3", text: "Gold Bolt #4 - North edge grapple", type: "collectible", explanation: "Grapple to yellow rift on hill in very north" },
-                    { id: "sargasso_4", text: "Gold Bolt #5 - Behind green silo", type: "collectible", explanation: "After repairing bridge and fighting Grunthor" },
-                    { id: "sargasso_5", text: "Armor #2 - Pocket Dimension", type: "collectible", explanation: "During first Speetle tutorial, on island straight ahead" },
-                    { id: "sargasso_6", text: "Armor #3 - Pocket Dimension cave", type: "collectible", explanation: "Before going up right side of Rivet's Hideout cave" },
-                    { id: "sargasso_7", text: "CraiggerBear #2 - Rivet's Hideout", type: "collectible", explanation: "On couch by TV, backtrack after defeating Seekerpede" },
-                    { id: "sargasso_8", text: "Armor #4 - Southwest Pocket Dimension", type: "collectible", explanation: "After boss, ride Speetle to southwest corner island" },
-                    { id: "sargasso_9", text: "Turn on TV in Rivet's Hideout", type: "misc", explanation: "After defeating Seekerpede, backtrack to hideout and interact with TV" },
-                    { id: "sargasso_10", text: "Start 'Help Trudi' side quest", type: "story", explanation: "Available after Planet 3, return to Sargasso" },
-                    { id: "sargasso_11", text: "Collect 10 Zurpstones for Trudi", type: "collectible", explanation: "Side quest reward, purple flowers in quest area" },
-                    { id: "sargasso_12", text: "Collect 30 Zurpstones for dragon mount", type: "collectible", explanation: "Unlocks flying mount for Gold Bolt #6" },
-                    { id: "sargasso_13", text: "Gold Bolt #6 - Flying dragon ring", type: "collectible", explanation: "Use dragon mount to fly through ring in center of map" },
-                    { id: "sargasso_14", text: "Collect all 60 Zurpstones", type: "collectible", explanation: "Ground ones first, then use dragon fire ability after 45 collected" },
-                    { id: "sargasso_15", text: "Spybot #2 - Zurpstone reward", type: "collectible", explanation: "Reward for collecting all 60 Zurpstones" },
-                    { id: "sargasso_16", text: "Armor #5 - Zurpstone quest reward", type: "collectible", explanation: "Reward for collecting 30 Zurpstones" }
+                    { id: "sargasso_1", text: "🏆 Hide 'N Seekerpede - Defeat the Seekerpede", type: "trophy", explanation: "Automatic story-related trophy, cannot be missed. Unlocks after completing the boss at the end of the 2nd planet Sargasso." },
+                    { id: "sargasso_2", text: "🏆 Extinction Event - Kill Five Grunthors (MISSABLE!)", type: "trophy", explanation: "BIG DINOSAURS - CRITICAL MISSABLE! Farm the first one 5 times: kill it, jump in swamp water to respawn, repeat. After the story they stop respawning!" },
+                    { id: "sargasso_3", text: "🏆 Lombax and Chill - Turn on the TV in Rivet's Hideout", type: "trophy", explanation: "After defeating the Seekerpede boss, backtrack to Rivet's Hideout and interact with the TV." },
+                    { id: "sargasso_4", text: "🏆 No Need for Multiball - Kill Two Enemies With a Single Ricochet Round", type: "trophy", explanation: "Buy Ricochet weapon (6,500 Bolts). Aim next to groups of purple toad enemies and shoot. The returning projectile will kill them from behind." },
+                    { id: "sargasso_5", text: "🏆 Extreme Gardening - Defeat 30 Enemies While They are Topiary'd", type: "trophy", explanation: "Buy Topiary Sprinkler weapon (4,000 Bolts). Each shot creates a turret that makes enemies green. Kill 30 green enemies with any weapon." },
+                    { id: "post_3", text: "🏆 They Blow Up So Fast - Get a Weapon to Level Five", type: "trophy", explanation: "Keep using one weapon (like the starting Blast Pistol) to get it to Level 5. Should happen naturally around this point." },
+                    { id: "sargasso_6", text: "Get Hoverboots", type: "story", explanation: "Automatic story progression" },
+                    { id: "sargasso_7", text: "Gold Bolt #4 - North edge grapple", type: "collectible", explanation: "Grapple to yellow rift on hill in very north" },
+                    { id: "sargasso_8", text: "Gold Bolt #5 - Behind green silo", type: "collectible", explanation: "After repairing bridge and fighting Grunthor" },
+                    { id: "sargasso_9", text: "Armor #2 - Pocket Dimension", type: "collectible", explanation: "During first Speetle tutorial, on island straight ahead" },
+                    { id: "sargasso_10", text: "Armor #3 - Pocket Dimension cave", type: "collectible", explanation: "Before going up right side of Rivet's Hideout cave" },
+                    { id: "sargasso_11", text: "CraiggerBear #2 - Rivet's Hideout", type: "collectible", explanation: "On couch by TV, backtrack after defeating Seekerpede" },
+                    { id: "sargasso_12", text: "Armor #4 - Southwest Pocket Dimension", type: "collectible", explanation: "After boss, ride Speetle to southwest corner island" },
+                    { id: "sargasso_13", text: "Start 'Help Trudi' side quest (available after Planet 3)", type: "story", explanation: "Return to Sargasso after completing Planet 3" },
+                    { id: "sargasso_14", text: "Collect 10 Zurpstones for Trudi", type: "collectible", explanation: "Side quest reward, purple flowers in quest area" },
+                    { id: "sargasso_15", text: "🏆 Feeding Friendsy - Collect 10 Zurpstones for Trudi", type: "trophy", explanation: "Complete the side quest 'Help Trudi (Optional)' by collecting 15 Zurpstones from purple flowers and returning to the quest giver." },
+                    { id: "sargasso_16", text: "Collect 30 Zurpstones for dragon mount", type: "collectible", explanation: "Unlocks flying mount for Gold Bolt #6" },
+                    { id: "sargasso_17", text: "Gold Bolt #6 - Flying dragon ring", type: "collectible", explanation: "Use dragon mount to fly through ring in center of map" },
+                    { id: "sargasso_18", text: "Collect all 60 Zurpstones", type: "collectible", explanation: "Ground ones first, then use dragon fire ability after 45 collected" },
+                    { id: "sargasso_19", text: "Spybot #2 - Zurpstone reward", type: "collectible", explanation: "Reward for collecting all 60 Zurpstones" },
+                    { id: "sargasso_20", text: "Armor #5 - Zurpstone quest reward", type: "collectible", explanation: "Reward for collecting 30 Zurpstones" },
+                    { id: "post_12", text: "🏆 Does This Make My Tail Look Big? - Acquire and Equip Head, Torso, and Leg Armor", type: "trophy", explanation: "By this planet, you will have collected at least one head, torso, and leg armor. Equip one of each from the pause menu (D-Pad > Armor) to unlock." },
+                    { id: "sargasso_21", text: "🏆 Return to Sender - Sink the Mothership on Sargasso", type: "trophy", explanation: "Automatic story-related trophy, cannot be missed. Unlocks on your 2nd story visit to Sargasso after shooting down the Mothership. The story makes you go back here after finishing planets 3-7." }
                 ]
             },
             {
                 planet: "Planet 3: Scarstu Debris Field",
                 items: [
-                    { id: "scarstu_1", text: "Complete Battleplex Challenge", type: "story", explanation: "Automatic story progression" },
-                    { id: "scarstu_2", text: "Play 3 songs on jukebox", type: "misc", explanation: "In bar corner, change song 3 times (triangle when close)" },
+                    { id: "scarstu_1", text: "🏆 Victory! - Complete a Battleplex Challenge", type: "trophy", explanation: "Automatic story-related trophy, cannot be missed. Unlocks after completing the first combat challenge on the 3rd planet." },
+                    { id: "scarstu_2", text: "🏆 Hey Lombax DJ - Play Three Songs on Zurkie's Jukebox", type: "trophy", explanation: "In the bar corner, walk up to jukebox and press triangle to change song 3 times. Must be very close to jukebox, not dancing." },
                     { id: "scarstu_3", text: "Gold Bolt #7 - Under central platform", type: "collectible", explanation: "Jump off platform and glide into floating bolt" },
                     { id: "scarstu_4", text: "Armor #6 - Pocket Dimension", type: "collectible", explanation: "Northeast corner of planet" },
                     { id: "scarstu_5", text: "CraiggerBear #3 - Gastropub Pocket Dimension", type: "collectible", explanation: "On box left of receptionist in mandatory story path" },
@@ -616,72 +864,76 @@
                     { id: "scarstu_11", text: "Spybot #3 - Battleplex Gold #4", type: "collectible", explanation: "Complete 'Vroom Around' (available after story)" },
                     { id: "scarstu_12", text: "Spybot #4 - North platform (post-Torren IV)", type: "collectible", explanation: "Use Hurlshot from Planet 6 to reach northern platform" },
                     { id: "scarstu_13", text: "Armor #10 - Battleplex Gold #5", type: "collectible", explanation: "Complete 'Twice as Nice' challenge" },
-                    { id: "scarstu_14", text: "Gold Cup Battleplex Challenge", type: "misc", explanation: "Available after completing all 9 planets" }
+                    { id: "scarstu_14", text: "🏆 Can't Stop Me - Complete a Gold Cup Battleplex Challenge", type: "trophy", explanation: "Gold Challenges become available only after finishing the 9th planet Viceron. Return here and complete any Gold Challenge on easiest difficulty." },
+                    { id: "post_5", text: "🏆 Full Rack - Fill a Weapon Wheel", type: "trophy", explanation: "By this planet, you can purchase your 8th weapon from Ms. Zurkon, which will fill the first weapon wheel and unlock this trophy." }
                 ]
             },
             {
                 planet: "Planet 4: Savali",
                 items: [
-                    { id: "savali_1", text: "Reach The Archives", type: "story", explanation: "Automatic story progression" },
-                    { id: "savali_2", text: "Get Hoverboots", type: "story", explanation: "Automatic story progression" },
-                    { id: "savali_3", text: "Find hot springs robots", type: "misc", explanation: "South of Ms. Zurkon vendor, robots in sun beds" },
-                    { id: "savali_4", text: "Start 'Hunt for Lombax Lore' quest", type: "story", explanation: "Side quest in middle of Savali" },
-                    { id: "savali_5", text: "Collect 3 Lorbs", type: "collectible", explanation: "Any 3 Lorbs, then return to quest giver" },
-                    { id: "savali_6", text: "Collect 7 Lorbs", type: "collectible", explanation: "Return to quest giver for armor reward" },
-                    { id: "savali_7", text: "Collect all 12 Lorbs", type: "collectible", explanation: "Return to quest giver for final armor reward" },
-                    { id: "savali_8", text: "Lorb #1 - West energy sphere", type: "collectible", explanation: "Follow wire, run over 3 plates with Hoverboots" },
-                    { id: "savali_9", text: "Lorb #2 - Far west edge", type: "collectible", explanation: "Protected by enemies" },
-                    { id: "savali_10", text: "Lorb #3 - Northwest flying platform", type: "collectible", explanation: "Chase platform, grapple on, step on pressure plate" },
-                    { id: "savali_11", text: "CraiggerBear #4 - Southern floating island", type: "collectible", explanation: "After first speedskating section, check left side" },
-                    { id: "savali_12", text: "Glitch Challenge #2 - Story forced", type: "story", explanation: "Automatic story progression" },
-                    { id: "savali_13", text: "Spybot #5 - Northeast cave", type: "collectible", explanation: "Cave with pirate ship, entrance south of icon" },
-                    { id: "savali_14", text: "Armor #11-13 - Lorb quest rewards", type: "collectible", explanation: "3, 7, and 12 Lorb rewards from quest giver" },
-                    { id: "savali_15", text: "Armor #14 - Flying platform", type: "collectible", explanation: "East of Ms. Zurkon, chase and grapple platform" },
-                    { id: "savali_16", text: "Armor #15-16 - Pocket Dimensions", type: "collectible", explanation: "Two pocket dimensions in southeast" },
-                    { id: "savali_17", text: "Gold Bolt #10 - West mountain teleport", type: "collectible", explanation: "Drive over 3 green plates quickly, opens portal" },
-                    { id: "savali_18", text: "Gold Bolt #11 - Southeast corner", type: "collectible", explanation: "Chase flying platform, grapple on, step on plate" },
-                    { id: "savali_19", text: "Gold Bolt #12 & Glitch #5 - Post-Ardolis", type: "collectible", explanation: "Underground in northwest after 'Access the Catacombs'" },
-                    { id: "savali_20", text: "Trick jump on grind rail", type: "misc", explanation: "5 double jumps while grinding on long rail" },
-                    { id: "savali_21", text: "Trick jump at max speed Hoverboots", type: "misc", explanation: "Hold R1, press L2 to max speed, then X twice" }
+                    { id: "savali_1", text: "🏆 Don't You Walk Away From Me - Reach the Archives", type: "trophy", explanation: "Automatic story-related trophy, cannot be missed. Unlocks when you reach the big walking robot called 'The Archives'." },
+                    { id: "savali_2", text: "🏆 Quantum Mechanic - Repair a Dimensional Anomaly", type: "trophy", explanation: "Automatic story-related trophy, cannot be missed. Unlocks during the Clank section where you fix the purple anomaly. You can skip puzzle and still get trophy." },
+                    { id: "savali_3", text: "🏆 Max Relax - Find the Nefarious Citizens by the Hot Springs", type: "trophy", explanation: "Near the center of the map, just south of the Ms. Zurkon weapon vendor is a hot spring with robots in sun beds. Go near them." },
+                    { id: "savali_4", text: "🏆 Must Go Faster - Do a Trick Jump While Going at Max Speed with the Hoverboots", type: "trophy", explanation: "Hold R1 to use Hoverboots, repeatedly press L2 to speed up until you see air stream. At full speed, press X twice to do trick jump." },
+                    { id: "savali_5", text: "🏆 Icebreaker - Melee Five Frozen Enemies", type: "trophy", explanation: "Buy Cold Snap weapon (20,000 Bolts). Freeze enemies, then attack with square to smash them while frozen. Easy farm in Battleplex Silver Challenge 'Freezer Pop'." },
+                    { id: "savali_6", text: "🏆 Might've Broken Something - Collect Three Lorbs", type: "trophy", explanation: "Accept side quest 'Hunt for Lombax Lore' in middle of Savali. Collect any 3 Lorbs and return to quest giver. Lorbs are at Lombax shrines throughout the planet." },
+                    { id: "savali_7", text: "Start 'Hunt for Lombax Lore' quest", type: "story", explanation: "Side quest in middle of Savali" },
+                    { id: "savali_8", text: "Collect 3 Lorbs (any)", type: "collectible", explanation: "Then return to quest giver for trophy" },
+                    { id: "savali_9", text: "Collect 7 Lorbs", type: "collectible", explanation: "Return to quest giver for armor reward" },
+                    { id: "savali_10", text: "Collect all 12 Lorbs", type: "collectible", explanation: "Return to quest giver for final armor reward" },
+                    { id: "savali_11", text: "Lorb #1 - West energy sphere", type: "collectible", explanation: "Follow wire, run over 3 plates with Hoverboots" },
+                    { id: "savali_12", text: "Lorb #2 - Far west edge", type: "collectible", explanation: "Protected by enemies" },
+                    { id: "savali_13", text: "Lorb #3 - Northwest flying platform", type: "collectible", explanation: "Chase platform, grapple on, step on pressure plate" },
+                    { id: "savali_14", text: "CraiggerBear #4 - Southern floating island", type: "collectible", explanation: "After first speedskating section, check left side" },
+                    { id: "savali_15", text: "Glitch Challenge #2 - Story forced", type: "story", explanation: "Automatic story progression" },
+                    { id: "savali_16", text: "Spybot #5 - Northeast cave", type: "collectible", explanation: "Cave with pirate ship, entrance south of icon" },
+                    { id: "savali_17", text: "Armor #11-13 - Lorb quest rewards", type: "collectible", explanation: "3, 7, and 12 Lorb rewards from quest giver" },
+                    { id: "savali_18", text: "Armor #14 - Flying platform", type: "collectible", explanation: "East of Ms. Zurkon, chase and grapple platform" },
+                    { id: "savali_19", text: "Armor #15-16 - Pocket Dimensions", type: "collectible", explanation: "Two pocket dimensions in southeast" },
+                    { id: "savali_20", text: "Gold Bolt #10 - West mountain teleport", type: "collectible", explanation: "Drive over 3 green plates quickly, opens portal" },
+                    { id: "savali_21", text: "Gold Bolt #11 - Southeast corner", type: "collectible", explanation: "Chase flying platform, grapple on, step on plate" },
+                    { id: "savali_22", text: "Gold Bolt #12 & Glitch #5 - Post-Ardolis", type: "collectible", explanation: "Underground in northwest after 'Access the Catacombs'" }
                 ]
             },
             {
                 planet: "Planet 5: Blizar Prime",
                 items: [
-                    { id: "blizar_1", text: "Acquire Phase Quartz", type: "story", explanation: "Automatic story progression" },
-                    { id: "blizar_2", text: "Blizon Crystals #1-3 - Story forced", type: "story", explanation: "Automatic story progression" },
-                    { id: "blizar_3", text: "CraiggerBear #5 - Room with 3rd blizon", type: "collectible", explanation: "Same room as third blizon, on metallic parts" },
-                    { id: "blizar_4", text: "Gold Bolt #13 - Lava area left path", type: "collectible", explanation: "Take left path in lava area to the end" },
-                    { id: "blizar_5", text: "Blizon Crystal #4 - Central platform", type: "collectible", explanation: "Left side of platform with miners and Ms. Zurkon" },
-                    { id: "blizar_6", text: "Gold Bolt #14 - After Blizon #4", type: "collectible", explanation: "In other dimension, use magnetic boots" },
-                    { id: "blizar_7", text: "Start 'Find the Missing Chef' quest", type: "story", explanation: "Side quest in northeast of planet" },
-                    { id: "blizar_8", text: "Blizon Crystals #5-7 - Chef quest area", type: "collectible", explanation: "Northeast side quest path to Chef Tulio" },
-                    { id: "blizar_9", text: "Gold Bolt #15 - After Blizon #7", type: "collectible", explanation: "Spawns in front of you after hitting crystal" },
-                    { id: "blizar_10", text: "Spybot #6 - Chef quest reward", type: "collectible", explanation: "Defend honey machine, then get Spybot from Chef" },
-                    { id: "blizar_11", text: "Collect Honey for Chef Tulio", type: "misc", explanation: "Complete Chef Tulio's side quest" },
-                    { id: "blizar_12", text: "Armor #17 - Pocket Dimension", type: "collectible", explanation: "Northeast side quest path to Chef Tulio" },
-                    { id: "blizar_13", text: "Blizon Crystals #8-9 - West platform", type: "collectible", explanation: "West of central platform, after flying platform" },
-                    { id: "blizar_14", text: "Armor #18 - After Blizon #9", type: "collectible", explanation: "In front of you after hitting crystal" },
-                    { id: "blizar_15", text: "Blizon Crystals #10-23 - Story/rail", type: "story", explanation: "Most are automatic, #20-21 are semi-missable on rails" },
-                    { id: "blizar_16", text: "CRITICAL: Blizon #20-21 on rails", type: "missable", explanation: "During rail grind, 3 rails section - get BOTH left and right rail crystals" }
+                    { id: "blizar_1", text: "🏆 This Crystal Is My Things - Acquire Phase Quartz", type: "trophy", explanation: "Automatic story-related trophy, cannot be missed. Unlocks after finishing the main objectives on the planet." },
+                    { id: "blizar_2", text: "🏆 Sweet, Sweet Victory - Collect Honey for Chef Tulio", type: "trophy", explanation: "Start side quest 'Find the Missing Chef (Optional)' in northeast of planet. Defend honey machine from waves of enemies, then return to Chef Tulio." },
+                    { id: "blizar_3", text: "🏆 Shifty Character - Hit Every Blizon Crystal on Blizar and Cordelion", type: "trophy", explanation: "Only 29 of 30 needed (patched). Hit purple glowing crystals to switch dimensions. Most are automatic for story, but some are in side areas. Don't miss #20-21 on rails!" },
+                    { id: "blizar_4", text: "Blizon Crystals #1-3 - Story forced", type: "story", explanation: "Automatic story progression" },
+                    { id: "blizar_5", text: "CraiggerBear #5 - Room with 3rd blizon", type: "collectible", explanation: "Same room as third blizon, on metallic parts" },
+                    { id: "blizar_6", text: "Gold Bolt #13 - Lava area left path", type: "collectible", explanation: "Take left path in lava area to the end" },
+                    { id: "blizar_7", text: "Blizon Crystal #4 - Central platform", type: "collectible", explanation: "Left side of platform with miners and Ms. Zurkon" },
+                    { id: "blizar_8", text: "Gold Bolt #14 - After Blizon #4", type: "collectible", explanation: "In other dimension, use magnetic boots" },
+                    { id: "blizar_9", text: "Start 'Find the Missing Chef' quest", type: "story", explanation: "Side quest in northeast of planet" },
+                    { id: "blizar_10", text: "Blizon Crystals #5-7 - Chef quest area", type: "collectible", explanation: "Northeast side quest path to Chef Tulio" },
+                    { id: "blizar_11", text: "Gold Bolt #15 - After Blizon #7", type: "collectible", explanation: "Spawns in front of you after hitting crystal" },
+                    { id: "blizar_12", text: "Spybot #6 - Chef quest reward", type: "collectible", explanation: "Defend honey machine, then get Spybot from Chef" },
+                    { id: "blizar_13", text: "Armor #17 - Pocket Dimension", type: "collectible", explanation: "Northeast side quest path to Chef Tulio" },
+                    { id: "blizar_14", text: "Blizon Crystals #8-9 - West platform", type: "collectible", explanation: "West of central platform, after flying platform" },
+                    { id: "blizar_15", text: "Armor #18 - After Blizon #9", type: "collectible", explanation: "In front of you after hitting crystal" },
+                    { id: "blizar_16", text: "Blizon Crystals #10-23 - Story/rail", type: "story", explanation: "Most are automatic, #20-21 are semi-missable on rails" },
+                    { id: "blizar_17", text: "CRITICAL: Blizon #20-21 on rails", type: "missable", explanation: "During rail grind, 3 rails section - get BOTH left and right rail crystals or you'll need to reload!" }
                 ]
             },
             {
                 planet: "Planet 6: Torren IV",
                 items: [
-                    { id: "torren_1", text: "Meet the Fixer", type: "story", explanation: "Automatic story progression" },
-                    { id: "torren_2", text: "Get Hurlshot ability", type: "story", explanation: "Automatic story progression" },
-                    { id: "torren_3", text: "Gold Bolt #16 - Right path start", type: "collectible", explanation: "Take right path at start, use Hoverboots over speedramp" },
-                    { id: "torren_4", text: "Spybot #7 - After swing rope", type: "collectible", explanation: "Go down magnetic path on right before Ms. Zurkon" },
-                    { id: "torren_5", text: "CraiggerBear #6 - Market stand", type: "collectible", explanation: "On counter of market stand with TVs, right before Ms. Zurkon" },
-                    { id: "torren_6", text: "Gold Bolt #17 - Rail grind grapple", type: "collectible", explanation: "During long rail grind, grapple to yellow rift on left" },
-                    { id: "torren_7", text: "Armor #19 - Pocket Dimension", type: "collectible", explanation: "After Hurlshot, on island with Ms. Zurkon, right side pocket dimension" }
+                    { id: "torren_1", text: "🏆 Emotional Support Robot - Meet the Fixer", type: "trophy", explanation: "Automatic story-related trophy, cannot be missed. Unlocks after finishing the main objectives on the planet." },
+                    { id: "torren_2", text: "🏆 Alert the Sponsors - Perform Five Trick Jumps on a Grind Rail", type: "trophy", explanation: "During the long forced rail grind, simply do 5 double jumps (X X) while grinding. Each flip counts as a trick jump." },
+                    { id: "torren_3", text: "Get Hurlshot ability", type: "story", explanation: "Automatic story progression" },
+                    { id: "torren_4", text: "Gold Bolt #16 - Right path start", type: "collectible", explanation: "Take right path at start, use Hoverboots over speedramp" },
+                    { id: "torren_5", text: "Spybot #7 - After swing rope", type: "collectible", explanation: "Go down magnetic path on right before Ms. Zurkon" },
+                    { id: "torren_6", text: "CraiggerBear #6 - Market stand", type: "collectible", explanation: "On counter of market stand with TVs, right before Ms. Zurkon" },
+                    { id: "torren_7", text: "Gold Bolt #17 - Rail grind grapple", type: "collectible", explanation: "During long rail grind, grapple to yellow rift on left" },
+                    { id: "torren_8", text: "Armor #19 - Pocket Dimension", type: "collectible", explanation: "After Hurlshot, on island with Ms. Zurkon, right side pocket dimension" }
                 ]
             },
             {
                 planet: "Planet 7: Cordelion",
                 items: [
-                    { id: "cordelion_1", text: "Set Juice Free", type: "story", explanation: "Automatic story progression" },
+                    { id: "cordelion_1", text: "🏆 It's Loose! - Set Juice Free", type: "trophy", explanation: "Automatic story-related trophy, cannot be missed. Unlocks near the end after setting Juice free in the forge area." },
                     { id: "cordelion_2", text: "Blizon Crystal #24 - Story forced", type: "story", explanation: "Automatic after first Ms. Zurkon" },
                     { id: "cordelion_3", text: "CraiggerBear #7 - Snow area left", type: "collectible", explanation: "After first blizon, slide down 3 times, check immediate left" },
                     { id: "cordelion_4", text: "Blizon Crystal #25 - East platform", type: "collectible", explanation: "Jump to east platform with full speed Hoverboots" },
@@ -697,7 +949,7 @@
             {
                 planet: "Planet 8: Ardolis",
                 items: [
-                    { id: "ardolis_1", text: "Feed Bubbles", type: "story", explanation: "Automatic story progression" },
+                    { id: "ardolis_1", text: "🏆 Rated Aaarrr! - Feed Bubbles", type: "trophy", explanation: "Automatic story-related trophy, cannot be missed. Unlocks after finishing the main objectives on the planet." },
                     { id: "ardolis_2", text: "Armor #21 - Pocket Dimension", type: "collectible", explanation: "After glitching room, take right path to beach, pocket dimension" },
                     { id: "ardolis_3", text: "Gold Bolt #21 & Glitch #4 - Pirate Trials", type: "collectible", explanation: "2nd room of trials, left side computer console" },
                     { id: "ardolis_4", text: "Armor #22 - Pirate trials reward", type: "collectible", explanation: "Automatic reward from completing pirate trials" },
@@ -709,50 +961,49 @@
             {
                 planet: "Planet 9: Viceron",
                 items: [
-                    { id: "viceron_1", text: "Break In and Out of Prison", type: "story", explanation: "Automatic story progression" },
-                    { id: "viceron_2", text: "Retrieve Dimensional Map", type: "story", explanation: "Automatic story progression" },
-                    { id: "viceron_3", text: "Defeat final bosses", type: "story", explanation: "Automatic story progression" },
-                    { id: "viceron_4", text: "Gold Bolt #23 - Right path phantom dash", type: "collectible", explanation: "Follow path right from Ms. Zurkon, use phantom dash" },
-                    { id: "viceron_5", text: "Spybot #10 - Ventilation shaft", type: "collectible", explanation: "After destroying fan, in vents before dropping out" },
-                    { id: "viceron_6", text: "CraiggerBear #9 - Clank's room", type: "collectible", explanation: "After freeing Clank, right side of room on bench" },
-                    { id: "viceron_7", text: "Gold Bolt #24 - Outside area northeast", type: "collectible", explanation: "After rescuing Clank, top right corner" },
-                    { id: "viceron_8", text: "Armor #23 - Open prison cell", type: "collectible", explanation: "Room with Ratchet's cell, left side second floor" },
-                    { id: "viceron_9", text: "Armor #24 - Pocket Dimension", type: "collectible", explanation: "Right of Ms. Zurkon's shop, path to Warden's Office" },
-                    { id: "viceron_10", text: "Gold Bolt #25 - Final cell block", type: "collectible", explanation: "After Warden's office window, check left cells" }
+                    { id: "viceron_1", text: "🏆 I'm the Warden Now - Break In and Out of Prison", type: "trophy", explanation: "Automatic story-related trophy, cannot be missed. Unlocks after leaving the 9th planet after finishing the main objectives." },
+                    { id: "viceron_2", text: "🏆 2 Fuzz 2 Nefarious - Defeat Doctor and Emperor Nefarious", type: "trophy", explanation: "Automatic story-related trophy, cannot be missed. Unlocks after completing the story." },
+                    { id: "viceron_3", text: "🏆 Just Stay Down - Defeat 30 Ejected Nefarious Trooper Heads", type: "trophy", explanation: "Should unlock naturally during the story. Destroy Troopers, then their ejected heads. Farm in Battleplex Silver Challenge 'Ka-boomstick Blast' if needed." },
+                    { id: "viceron_4", text: "🏆 No Bones About It - Retrieve the Dimensional Map", type: "trophy", explanation: "Automatic story-related trophy, cannot be missed. Unlocks after your 2nd story visit to Savali. The story makes you go back here after finishing Ardolis." },
+                    { id: "viceron_5", text: "Gold Bolt #23 - Right path phantom dash", type: "collectible", explanation: "Follow path right from Ms. Zurkon, use phantom dash" },
+                    { id: "viceron_6", text: "Spybot #10 - Ventilation shaft", type: "collectible", explanation: "After destroying fan, in vents before dropping out" },
+                    { id: "viceron_7", text: "CraiggerBear #9 - Clank's room", type: "collectible", explanation: "After freeing Clank, right side of room on bench" },
+                    { id: "viceron_8", text: "Gold Bolt #24 - Outside area northeast", type: "collectible", explanation: "After rescuing Clank, top right corner" },
+                    { id: "viceron_9", text: "Armor #23 - Open prison cell", type: "collectible", explanation: "Room with Ratchet's cell, left side second floor" },
+                    { id: "viceron_10", text: "Armor #24 - Pocket Dimension", type: "collectible", explanation: "Right of Ms. Zurkon's shop, path to Warden's Office" },
+                    { id: "viceron_11", text: "Gold Bolt #25 - Final cell block", type: "collectible", explanation: "After Warden's office window, check left cells" }
                 ]
             },
             {
-                planet: "Post-Story: Challenge Mode & Cleanup",
+                planet: "Post-Story: Cleanup & Challenge Mode",
                 items: [
-                    { id: "post_1", text: "Resume from Title Screen (free roam)", type: "story", explanation: "Choose Resume on completed save, puts you before final boss" },
-                    { id: "post_2", text: "Complete any remaining CraiggerBears", type: "collectible", explanation: "All 9 needed for UnBEARably Awesome trophy" },
-                    { id: "post_3", text: "Complete any remaining Spybots", type: "collectible", explanation: "All 10 needed for RYNO weapon" },
-                    { id: "post_4", text: "Complete any remaining Glitch Challenges", type: "collectible", explanation: "All 5 needed, can skip puzzles" },
-                    { id: "post_5", text: "Hit 29/30 Blizon Crystals", type: "collectible", explanation: "Only 29 needed for trophy, can miss 1" },
-                    { id: "post_6", text: "Collect 5 Gold Bolts", type: "collectible", explanation: "Only 5 of 25 needed for trophy" },
-                    { id: "post_7", text: "Get 1 head, 1 torso, 1 leg armor", type: "collectible", explanation: "Any armor pieces work, don't need same set" },
-                    { id: "post_8", text: "Buy all story weapons (18 total)", type: "weapon", explanation: "From Ms. Zurkon vendors throughout the game" },
-                    { id: "post_9", text: "Get weapon to Level 5", type: "weapon", explanation: "Use Blast Pistol, easy to level with lots of ammo" },
-                    { id: "post_10", text: "Fully upgrade a weapon", type: "weapon", explanation: "31 Raritanium for Blast Pistol, must be Level 5 first" },
-                    { id: "post_11", text: "Fill Weapon Wheel (8 weapons)", type: "weapon", explanation: "Automatic while buying all weapons" },
-                    { id: "post_12", text: "Start Challenge Mode (New Game+)", type: "weapon", explanation: "New save slot from Title Screen" },
-                    { id: "post_13", text: "Buy Bouncer & Pixelizer (Challenge Mode)", type: "weapon", explanation: "First Ms. Zurkon in prologue, 10 minutes in, cost 1 bolt each" },
-                    { id: "post_14", text: "Get RYNO (all Spybots collected)", type: "weapon", explanation: "Free from Ms. Zurkon after finding all 10 Spybots" },
-                    { id: "post_15", text: "Melee 5 frozen enemies", type: "misc", explanation: "Buy Cold Snap weapon, freeze then melee" },
-                    { id: "post_16", text: "Kill 2 enemies with 1 Ricochet", type: "misc", explanation: "Buy Ricochet, hit toad groups from behind" },
-                    { id: "post_17", text: "Kill 10 enemies with Void Reactor", type: "misc", explanation: "Level 5 Void Repulser, collect bullets, shoot back" },
-                    { id: "post_18", text: "20 Headshots with Headhunter", type: "misc", explanation: "Buy Headhunter sniper rifle" },
-                    { id: "post_19", text: "Deploy 50 Mr. Fungis", type: "misc", explanation: "Buy Mr. Fungi, use up 50 ammo" },
-                    { id: "post_20", text: "Defeat 30 Topiary'd enemies", type: "misc", explanation: "Buy Topiary Sprinkler, kill green enemies" },
-                    { id: "post_21", text: "Defeat 30 ejected Trooper heads", type: "misc", explanation: "Destroy Troopers, then their heads" }
+                    { id: "post_2", text: "🏆 Nooks and Crannies - Collect Five Gold Bolts", type: "trophy", explanation: "You only need 5 of the 25 Gold Bolts. You should have this long before finishing the story. If not, clean it up now." },
+                    { id: "post_4", text: "🏆 There's Even a Cupholder - Fully Upgrade a Weapon", type: "trophy", explanation: "Fully upgrade one weapon (like the Blast Pistol). Needs 31 Raritanium total. Must reach Level 5 first, then buy all upgrades from Ms. Zurkon." },
+                    { id: "post_6", text: "🏆 Return Policy - Kill 10 Enemies by Returning Shots with the Void Reactor", type: "trophy", explanation: "Buy Void Repulser (17,500 Bolts). Level to 5 (becomes Void Reactor). Hold L2 to create shield, collect bullets, press R2 to shoot back. Farm in Battleplex Bronze Challenge 'Welcoming Committee'." },
+                    { id: "post_7", text: "🏆 Hole Puncher - Get 20 Headshots with the Headhunter", type: "trophy", explanation: "Buy Headhunter (40,000 Bolts). Farm in Gold Battleplex Challenge 'A Good Time to Zoom' which forces headshot kills." },
+                    { id: "post_10", text: "🏆 Glitch, Uh, Finds a Way - Complete All Glitch Challenges", type: "trophy", explanation: "All 5 Glitch Challenges needed. You can skip the puzzles from the pause menu and still get the trophy. Check all planets for any you missed." },
+                    { id: "post_11", text: "🏆 UnBEARably Awesome - Find all CraiggerBears", type: "trophy", explanation: "All 9 CraiggerBears needed (1 per planet). Check all planets for any you missed." },
+                    { id: "post_9", text: "🏆 Aim to Misbehave - Acquire the RYNO", type: "trophy", explanation: "Find all 10 Spybots from the other planets, then buy the RYNO for free from any Ms. Zurkon vendor. This must be done *before* starting Challenge Mode for the Fully Stacked trophy." },
+                    { id: "post_24", text: "Start Challenge Mode (New Game+)", type: "weapon", explanation: "From the title screen, select your completed save and start a new Challenge Mode game. This is New Game+." },
+                    { id: "post_26", text: "Buy Bouncer & Pixelizer (Challenge Mode)", type: "weapon", explanation: "Play the Challenge Mode prologue (about 10 mins) until you reach the first Ms. Zurkon. Buy the Bouncer and Pixelizer from her (they cost 1 Bolt each)." },
+                    { id: "post_25", text: "🏆 Fully Stacked - Purchase All Weapons", type: "trophy", explanation: "This trophy will unlock after you buy the Bouncer and Pixelizer in Challenge Mode, assuming you already have all 18 story weapons and the RYNO." },
+                    { id: "post_28", text: "🏆 Masters of The Multiverse - Platinum Trophy", type: "trophy", explanation: "Automatic trophy awarded for collecting all other trophies in the game. This is the final trophy you'll unlock after completing everything else." }
                 ]
             }
         ];
+        // *** END MODIFIED DATA ***
 
         let completedItems = new Set();
         let expandedPlanets = new Set();
+        let undoStack = [];
+        let redoStack = [];
+        let currentTheme = 'dark';
+        let lastMilestone = 0;
+        let draggedItem = null;
 
         function initializeChecklist() {
+            initializeTheme();
+            initializePullToRefresh();
             const container = document.getElementById('checklistContainer');
             container.innerHTML = '';
 
@@ -767,9 +1018,9 @@
                     <div class="planet-content" id="planet-${planetIndex}">
                         <ul class="checklist">
                             ${planet.items.map(item => `
-                                <li class="checklist-item" id="item-${item.id}">
+                                <li class="checklist-item ${item.type === 'trophy' ? 'trophy-item' : ''}" id="item-${item.id}">
                                     <div class="item-content" onclick="toggleItem('${item.id}')">
-                                        <div class="item-checkbox"></div>
+                                        ${item.type === 'trophy' ? '<div class="item-checkbox trophy-checkbox"></div>' : '<div class="item-checkbox"></div>'}
                                         <span class="item-text">${item.text}</span>
                                         <span class="item-type ${item.type}">${getTypeLabel(item.type)}</span>
                                         <button class="explanation-toggle" onclick="toggleExplanation(event, '${item.id}')">i</button>
@@ -786,8 +1037,16 @@
                 expandedPlanets.add(planetIndex);
             });
 
+            // Make checklist items draggable after they're created
+            setTimeout(() => {
+                document.querySelectorAll('.checklist-item').forEach(item => {
+                    makeDraggable(item);
+                });
+            }, 100);
+
             loadProgress();
             updateStats();
+            updateTrophyCounter();
         }
 
         function getTypeLabel(type) {
@@ -796,7 +1055,8 @@
                 missable: 'Missable',
                 collectible: 'Collectible',
                 weapon: 'Weapon',
-                misc: 'Misc'
+                misc: 'Misc',
+                trophy: 'Trophy'
             };
             return labels[type] || type;
         }
@@ -820,17 +1080,41 @@
 
         function toggleItem(itemId) {
             const item = document.getElementById(`item-${itemId}`);
+            const wasCompleted = completedItems.has(itemId);
             
-            if (completedItems.has(itemId)) {
+            if (wasCompleted) {
                 completedItems.delete(itemId);
                 item.classList.remove('completed');
             } else {
                 completedItems.add(itemId);
                 item.classList.add('completed');
+                triggerHapticFeedback();
             }
             
             saveProgress();
             updateStats();
+            updateTrophyCounter();
+            checkMilestones();
+        }
+
+        function findItemData(itemId) {
+            for (const planet of checklistData) {
+                const item = planet.items.find(i => i.id === itemId);
+                if (item) return item;
+            }
+            return null;
+        }
+
+        function updateTrophyCounter() {
+            const totalTrophies = checklistData.reduce((sum, planet) => 
+                sum + planet.items.filter(item => item.type === 'trophy').length, 0
+            );
+            const earnedTrophies = checklistData.reduce((sum, planet) => 
+                sum + planet.items.filter(item => item.type === 'trophy' && completedItems.has(item.id)).length, 0
+            );
+            
+            document.getElementById('trophyCount').textContent = earnedTrophies;
+            document.getElementById('totalTrophies').textContent = totalTrophies;
         }
 
         function toggleExplanation(event, itemId) {
@@ -842,7 +1126,7 @@
         function updateStats() {
             const totalItems = checklistData.reduce((sum, planet) => sum + planet.items.length, 0);
             const completedCount = completedItems.size;
-            const progressPercentage = Math.round((completedCount / totalItems) * 100);
+            const progressPercentage = totalItems > 0 ? Math.round((completedCount / totalItems) * 100) : 0;
             
             document.getElementById('progressBar').style.width = `${progressPercentage}%`;
             document.getElementById('progressBar').textContent = `${progressPercentage}%`;
@@ -853,7 +1137,8 @@
         function saveProgress() {
             const progress = {
                 completedItems: Array.from(completedItems),
-                expandedPlanets: Array.from(expandedPlanets)
+                expandedPlanets: Array.from(expandedPlanets),
+                lastMilestone: lastMilestone
             };
             localStorage.setItem('ratchetProgress', JSON.stringify(progress));
         }
@@ -864,6 +1149,7 @@
                 const progress = JSON.parse(saved);
                 completedItems = new Set(progress.completedItems || []);
                 expandedPlanets = new Set(progress.expandedPlanets || []);
+                lastMilestone = progress.lastMilestone || 0;
                 
                 // Apply completed state
                 completedItems.forEach(itemId => {
@@ -915,6 +1201,8 @@
         }
 
         function resetProgress() {
+            // Use a custom modal here if possible, but for simplicity, we'll keep confirm
+            // In a real app, replace this with a non-blocking UI element
             if (confirm('Are you sure you want to reset all progress? This cannot be undone.')) {
                 completedItems.clear();
                 expandedPlanets.clear();
@@ -933,6 +1221,7 @@
                 });
                 
                 updateStats();
+                updateTrophyCounter();
                 
                 // Close menu after reset
                 const menuToggle = document.getElementById('menuToggle');
@@ -953,8 +1242,220 @@
             }
         });
 
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.getElementById('themeIcon');
+            
+            if (currentTheme === 'dark') {
+                currentTheme = 'light';
+                body.setAttribute('data-theme', 'light');
+                themeIcon.textContent = '☀️';
+            } else {
+                currentTheme = 'dark';
+                body.removeAttribute('data-theme');
+                themeIcon.textContent = '🌙';
+            }
+            
+            localStorage.setItem('theme', currentTheme);
+        }
+
+        function initializeTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            
+            currentTheme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+            
+            if (currentTheme === 'light') {
+                document.body.setAttribute('data-theme', 'light');
+                document.getElementById('themeIcon').textContent = '☀️';
+            } else {
+                document.body.removeAttribute('data-theme');
+                document.getElementById('themeIcon').textContent = '🌙';
+            }
+        }
+
+        function checkMilestones() {
+            const totalItems = checklistData.reduce((sum, planet) => sum + planet.items.length, 0);
+            const completedCount = completedItems.size;
+            const percentage = totalItems > 0 ? Math.round((completedCount / totalItems) * 100) : 0;
+            
+            const milestones = [25, 50, 75, 100];
+            const milestoneMessages = {
+                25: { title: "🎯 Great Start!", message: "You're 25% of the way to platinum!" },
+                50: { title: "🔥 Halfway There!", message: "50% complete - The platinum is in sight!" },
+                75: { title: "⚡ Almost There!", message: "75% done - Final stretch ahead!" },
+                100: { title: "🏆 PLATINUM!", message: "Congratulations! You've earned the platinum trophy!" }
+            };
+            
+            milestones.forEach(milestone => {
+                if (percentage >= milestone && lastMilestone < milestone) {
+                    showMilestoneCelebration(milestoneMessages[milestone]);
+                    createConfetti();
+                    lastMilestone = milestone;
+                }
+            });
+        }
+
+        function showMilestoneCelebration(message) {
+            const celebration = document.getElementById('milestoneCelebration');
+            const title = document.getElementById('milestoneTitle');
+            const msg = document.getElementById('milestoneMessage');
+            
+            title.textContent = message.title;
+            msg.textContent = message.message;
+            
+            celebration.style.display = 'block';
+            
+            setTimeout(() => {
+                celebration.style.display = 'none';
+            }, 3000);
+        }
+
+        function createConfetti() {
+            const colors = ['#7c3aed', '#ec4899', '#10b981', '#f59e0b', '#ef4444', '#ffd700', '#c0c0c0'];
+            
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.animationDelay = Math.random() * 0.5 + 's';
+                    confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                    document.body.appendChild(confetti);
+                    
+                    setTimeout(() => confetti.remove(), 4000);
+                }, i * 30);
+            }
+        }
+
+        function saveAction(action) {
+            // Undo/redo functionality removed
+        }
+
+        function updateUndoRedoButtons() {
+            // Undo/redo functionality removed
+        }
+
+        function updateItemUI(itemId) {
+            const item = document.getElementById(`item-${itemId}`);
+            if (completedItems.has(itemId)) {
+                item.classList.add('completed');
+            } else {
+                item.classList.remove('completed');
+            }
+        }
+
+        function initializePullToRefresh() {
+            let startY = 0;
+            let isPulling = false;
+            
+            document.addEventListener('touchstart', (e) => {
+                if (window.scrollY === 0) {
+                    startY = e.touches[0].clientY;
+                    isPulling = true;
+                }
+            });
+            
+            document.addEventListener('touchmove', (e) => {
+                if (!isPulling) return;
+                
+                const currentY = e.touches[0].clientY;
+                const pullDistance = currentY - startY;
+                
+                if (pullDistance > 0 && pullDistance < 150) {
+                    const pullToRefresh = document.getElementById('pullToRefresh');
+                    pullToRefresh.style.transform = `translateX(-50%) translateY(${pullDistance - 60}px)`;
+                    
+                    if (pullDistance > 100) {
+                        pullToRefresh.classList.add('show');
+                    }
+                }
+            });
+            
+            document.addEventListener('touchend', (e) => {
+                if (!isPulling) return;
+                
+                const pullToRefresh = document.getElementById('pullToRefresh');
+                const currentY = e.changedTouches[0].clientY;
+                const pullDistance = currentY - startY;
+                
+                if (pullDistance > 100) {
+                    location.reload();
+                } else {
+                    pullToRefresh.classList.remove('show');
+                    pullToRefresh.style.transform = 'translateX(-50%) translateY(-60px)';
+                }
+                
+                isPulling = false;
+            });
+        }
+
+        function triggerHapticFeedback() {
+            if ('vibrate' in navigator) {
+                navigator.vibrate(50);
+            }
+        }
+
+        function makeDraggable(element) {
+            element.draggable = true;
+            
+            element.addEventListener('dragstart', (e) => {
+                draggedItem = element;
+                element.classList.add('dragging');
+                e.dataTransfer.effectAllowed = 'move';
+            });
+            
+            element.addEventListener('dragend', (e) => {
+                element.classList.remove('dragging');
+                draggedItem = null;
+            });
+            
+            element.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                e.dataTransfer.dropEffect = 'move';
+                
+                if (draggedItem && draggedItem !== element) {
+                    element.classList.add('drag-over');
+                }
+            });
+            
+            element.addEventListener('dragleave', (e) => {
+                element.classList.remove('drag-over');
+            });
+            
+            element.addEventListener('drop', (e) => {
+                e.preventDefault();
+                element.classList.remove('drag-over');
+                
+                if (draggedItem && draggedItem !== element) {
+                    const draggedId = draggedItem.id.replace('item-', '');
+                    const targetId = element.id.replace('item-', '');
+                    
+                    // Find and swap items in the data structure
+                    swapItems(draggedId, targetId);
+                    
+                    // Re-render the checklist
+                    initializeChecklist();
+                    loadProgress();
+                }
+            });
+        }
+
+        function swapItems(id1, id2) {
+            checklistData.forEach(planet => {
+                const index1 = planet.items.findIndex(item => item.id === id1);
+                const index2 = planet.items.findIndex(item => item.id === id2);
+                
+                if (index1 !== -1 && index2 !== -1) {
+                    [planet.items[index1], planet.items[index2]] = [planet.items[index2], planet.items[index1]];
+                }
+            });
+        }
+
         // Initialize on page load
         document.addEventListener('DOMContentLoaded', initializeChecklist);
     </script>
 </body>
 </html>
+
